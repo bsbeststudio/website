@@ -1,0 +1,47 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { CONTACT_EMAIL, SITE_TITLE } from '../consts';
+
+const title = '服务条款';
+const description = `使用 ${SITE_TITLE} 网站及咨询服务前请阅读的条款。`;
+const updated = '2026年7月1日';
+---
+
+<Layout title={title} description={description}>
+	<article class="mx-auto max-w-2xl px-6 pb-20 pt-20 md:pt-28">
+		<p class="text-sm font-medium uppercase tracking-wide text-accent">Terms of Service</p>
+		<h1 class="mt-4 text-3xl font-semibold text-ink md:text-4xl">服务条款</h1>
+		<p class="mt-3 text-sm text-ink-soft">最近更新：{updated}</p>
+
+		<div class="prose-copy mt-10 text-base leading-relaxed text-ink-soft">
+			<p>
+				欢迎使用 {SITE_TITLE} 的网站与咨询服务。使用本网站或预约我们的咨询服务，即表示你同意以下条款。
+			</p>
+
+			<h2 class="mt-8 text-xl font-semibold text-ink">服务性质</h2>
+			<p>
+				我们提供的是学术早期职业规划与申请咨询服务，包括但不限于背景诊断、路径规划、材料修改与面试辅导。所有建议基于我们对招募逻辑和申请流程的理解，不构成对任何特定录取、offer 或结果的保证。
+			</p>
+
+			<h2 class="mt-8 text-xl font-semibold text-ink">你的责任</h2>
+			<p>
+				你需要对提供给我们的信息的真实性负责，并对最终提交的申请材料内容负全部责任。我们的建议仅供参考，最终决策与执行由你自行完成。
+			</p>
+
+			<h2 class="mt-8 text-xl font-semibold text-ink">保密</h2>
+			<p>
+				我们对你在咨询过程中分享的个人背景信息予以保密，仅用于为你提供咨询服务。网站中展示的案例均为匿名化的复合场景，不对应任何具体客户的真实信息。
+			</p>
+
+			<h2 class="mt-8 text-xl font-semibold text-ink">条款变更</h2>
+			<p>
+				我们可能会不时更新本条款，更新后的版本将发布在本页面。继续使用本网站或我们的服务，即表示你接受更新后的条款。
+			</p>
+
+			<h2 class="mt-8 text-xl font-semibold text-ink">联系我们</h2>
+			<p>
+				如对本条款有任何疑问，请通过 <a href={`mailto:${CONTACT_EMAIL}`} class="text-accent hover:underline">{CONTACT_EMAIL}</a> 联系我们。
+			</p>
+		</div>
+	</article>
+</Layout>

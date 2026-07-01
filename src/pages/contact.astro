@@ -1,0 +1,41 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { CONTACT_EMAIL, WECHAT_ACCOUNT } from '../consts';
+
+const title = '联系我们';
+const description = '通过邮箱或微信公众号联系 Best Studio，开始一次背景诊断。';
+---
+
+<Layout title={title} description={description}>
+	<section class="mx-auto max-w-3xl px-6 pb-20 pt-20 md:pt-28">
+		<p class="text-sm font-medium uppercase tracking-wide text-accent">Contact</p>
+		<h1 class="mt-4 text-4xl font-semibold leading-tight tracking-tight text-ink md:text-5xl">联系我们</h1>
+		<p class="mt-6 text-lg leading-relaxed text-ink-soft">
+			请通过以下任一方式联系我们。为了让第一次沟通更高效，建议简要说明你目前所处的阶段（例如：本科在读 /
+			准备申请 Predoc / 正在准备 PhD 申请）。
+		</p>
+
+		<div class="mt-12 grid gap-6 sm:grid-cols-2">
+			<div class="rounded-2xl border border-line bg-paper p-7">
+				<h2 class="text-lg font-semibold text-ink">邮箱</h2>
+				<p class="mt-2 text-sm text-ink-soft">最适合详细描述你的背景和问题。</p>
+				<a href={`mailto:${CONTACT_EMAIL}`} class="mt-4 inline-block text-accent hover:underline">
+					{CONTACT_EMAIL}
+				</a>
+			</div>
+
+			<div class="rounded-2xl border border-line bg-paper p-7">
+				<h2 class="text-lg font-semibold text-ink">微信公众号</h2>
+				<p class="mt-2 text-sm text-ink-soft">关注公众号后可直接留言，我们会尽快回复。</p>
+				<p class="mt-4 font-medium text-ink">{WECHAT_ACCOUNT}</p>
+			</div>
+		</div>
+
+		<div class="mt-12 rounded-2xl bg-paper-raised p-7">
+			<h2 class="text-lg font-semibold text-ink">如果你想直接预约咨询</h2>
+			<p class="mt-2 text-sm leading-relaxed text-ink-soft">
+				可以直接前往 <a href="/book-a-call" class="text-accent hover:underline">Book a Call</a> 页面查看预约方式。
+			</p>
+		</div>
+	</section>
+</Layout>

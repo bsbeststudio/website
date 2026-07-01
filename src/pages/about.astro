@@ -1,62 +1,47 @@
 ---
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import Layout from '../layouts/BlogPost.astro';
+import Layout from '../layouts/Layout.astro';
+import CTA from '../components/CTA.astro';
+
+const title = '关于我们';
+const description = 'Best Studio 的方法论：以 PI 与招生委员会的真实评估逻辑为核心，而非营销式的申请建议。';
 ---
 
-<Layout
-  title="关于 Best Studio"
-  description="学术早期职业规划"
-  pubDate={new Date()}
-  heroImage={AboutHeroImage}
->
+<Layout title={title} description={description}>
+	<section class="mx-auto max-w-3xl px-6 pb-16 pt-20 md:pt-28">
+		<p class="text-sm font-medium uppercase tracking-wide text-accent">About Best Studio</p>
+		<h1 class="mt-4 text-4xl font-semibold leading-tight tracking-tight text-ink md:text-5xl">
+			我们只做一件事：把决策拆开，讲清楚每一步的依据
+		</h1>
+		<p class="mt-6 text-lg leading-relaxed text-ink-soft">
+			Best Studio 专注于研究导向学生的学术早期职业规划——Predoc 申请、PhD 申请、研究职业路径选择。我们的建议不来自"大家都这么说"，而来自对 PI 招募逻辑、招生委员会评估维度和真实决策规则的持续拆解。
+		</p>
+	</section>
 
-  <h2>我们的理念</h2>
+	<section class="mx-auto max-w-3xl px-6 py-10">
+		<h2 class="text-2xl font-semibold text-ink">我们的方法论</h2>
+		<div class="mt-6 space-y-6 text-base leading-relaxed text-ink-soft">
+			<p>
+				PI 招募 Predoc 的逻辑和招生委员会评估 PhD 申请者的逻辑并不相同：PI 关心短期能力和长期声誉回报，委员会关心长期研究潜力。混淆这两套逻辑，是大多数申请材料失效的根本原因。我们的每一条建议都对应一条可追溯的决策规则，而不是泛泛的经验之谈。
+			</p>
+			<p>
+				我们也相信，好的规划应该经得起时间和反馈的检验。每一次咨询都会留下明确的产出——诊断报告、目标清单、材料草稿、面试复盘——而不是一次性的口头建议。
+			</p>
+		</div>
+	</section>
 
-  <p>
-    Best Studio 致力于帮助研究导向学生做出更好的学术职业决策。
-  </p>
+	<section class="mx-auto max-w-3xl px-6 py-10">
+		<h2 class="text-2xl font-semibold text-ink">我们相信</h2>
+		<ul class="mt-6 space-y-4 text-base leading-relaxed text-ink-soft">
+			<li><strong class="text-ink">定制化 &gt; 申请量。</strong>高度定制的少量申请，效果远好于大量通用申请。</li>
+			<li><strong class="text-ink">诚实 &gt; 包装。</strong>识别背景差距并给出可信的学习计划，比假装没有差距更有说服力。</li>
+			<li><strong class="text-ink">证据 &gt; 直觉。</strong>路径选择应该基于推荐信网络、研究经历真实程度和签证时间线等可验证因素。</li>
+		</ul>
+	</section>
 
-  <p>
-    我们相信，真正决定申请结果的，往往不是信息多少，而是判断是否正确。
-  </p>
-
-  <h2>我们关注什么</h2>
-
-  <ul>
-    <li>Research Experience</li>
-    <li>Research Assistant (RA)</li>
-    <li>Predoc</li>
-    <li>PhD Applications</li>
-    <li>Academic Career Decisions</li>
-  </ul>
-
-  <h2>覆盖地区</h2>
-
-  <ul>
-    <li>美国</li>
-    <li>英国</li>
-    <li>欧洲</li>
-    <li>香港</li>
-  </ul>
-
-  <h2>覆盖学科</h2>
-
-  <ul>
-    <li>Economics</li>
-    <li>Finance</li>
-    <li>Business</li>
-    <li>Public Policy</li>
-  </ul>
-
-  <h2>为什么建立这个网站</h2>
-
-  <p>
-    市面上并不缺申请经验分享，也不缺申请机构。
-  </p>
-
-  <p>
-    我们希望做的是帮助学生理解学术体系背后的逻辑，
-    在关键节点做出更好的决策，而不是提供更多碎片化信息。
-  </p>
-
+	<CTA
+		heading="想了解我们能为你提供什么？"
+		body="预约一次咨询，我们会先做背景诊断，再给出具体建议。"
+		buttonLabel="预约咨询"
+		buttonHref="/book-a-call"
+	/>
 </Layout>

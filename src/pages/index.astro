@@ -1,58 +1,141 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import Timeline from '../components/Timeline.astro';
+import CTA from '../components/CTA.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from '../consts';
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+
+const caseStudies = (await getCollection('case-studies'))
+	.sort((a, b) => a.data.order - b.data.order)
+	.slice(0, 3);
+
+const homeFaqs = (await getCollection('faqs'))
+	.filter((f) => f.data.showOnHome)
+	.sort((a, b) => a.data.order - b.data.order)
+	.map((f) => ({ question: f.data.question, answer: f.data.answer }));
+
+const processSteps = [
+	{ title: '背景诊断', description: '梳理 CV、成绩单、推荐信网络位置和技能栈，识别当前最强资产和最关键缺口。' },
+	{ title: '路径与目标分层', description: '基于诊断结果给出路径建议，并将目标院校/岗位分为冲刺、合适、保底三档。' },
+	{ title: '材料定制', description: '围绕研究主线重写 Cover Letter、CV、SOP，确保所有材料信号一致。' },
+	{ title: '模拟面试与复盘', description: '在真实压力下暴露答题模式，识别红线回答并给出可执行的重构框架。' },
+];
+
+const professionalServiceSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'ProfessionalService',
+	name: SITE_TITLE,
+	description: SITE_DESCRIPTION,
+	url: SITE_URL,
+	areaServed: 'Global',
+	knowsLanguage: ['zh-CN', 'en'],
+};
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<section>
-				<h1>Best Studio</h1>
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION} structuredData={professionalServiceSchema}>
+	<Hero
+		eyebrow="Best Studio"
+		title="学术早期职业决策，值得用证据而不是直觉来做"
+		subtitle="我们为研究导向的学生提供 Predoc、PhD 申请与学术职业规划的一对一咨询，基于真实的招募逻辑与决策框架，帮助你在每个关键节点做出经得起验证的选择。"
+		primaryCta={{ label: '预约咨询', href: '/book-a-call' }}
+		secondaryCta={{ label: '查看服务', href: '/services' }}
+	/>
 
-				<h2>学术早期职业规划</h2>
-
-				<p>
-				帮助研究导向学生做更好的学术职业决策。
+	<section class="mx-auto max-w-6xl px-6 py-16">
+		<h2 class="text-2xl font-semibold text-ink md:text-3xl">我们能帮到谁</h2>
+		<div class="mt-8 grid gap-8 md:grid-cols-3">
+			<div>
+				<p class="text-sm font-medium uppercase tracking-wide text-accent">本科 / 硕士在读</p>
+				<p class="mt-2 text-sm leading-relaxed text-ink-soft">
+					研究经历分散、缺乏统一叙事，需要判断该优先积累资产还是准备申请材料。
 				</p>
-
-				<p>
-				我们专注于 Economics、Finance、Marketing、Business、Public Policy
-				等研究导向学科，覆盖美国、英国、欧洲及香港的
-				RA、Predoc 与 PhD 申请规划。
+			</div>
+			<div>
+				<p class="text-sm font-medium uppercase tracking-wide text-accent">Predoc / RA 申请者</p>
+				<p class="mt-2 text-sm leading-relaxed text-ink-soft">
+					投递回复率低，需要诊断材料定制化程度，而不是继续增加投递量。
 				</p>
-			</section>
-
-			<section>
-				<h2>从这里开始</h2>
-
-				<ul>
-				<li><a href="/blog">阅读全部文章</a></li>
-				<li><a href="/blog/start-here">什么是学术规划？</a></li>
-				<li><a href="/blog/predoc-guide">Predoc 指南（Coming Soon）</a></li>
-				<li><a href="/blog/phd-application">PhD 申请指南（Coming Soon）</a></li>
-				</ul>
-			</section>
-
-			<section>
-				<h2>我们的理念</h2>
-
-				<p>
-				我们相信，成功来自更好的判断，而不是更多的信息。
+			</div>
+			<div>
+				<p class="text-sm font-medium uppercase tracking-wide text-accent">PhD 申请者</p>
+				<p class="mt-2 text-sm leading-relaxed text-ink-soft">
+					需要在推荐信网络、研究经历真实程度与签证时间线之间做出有据可查的路径选择。
 				</p>
+			</div>
+		</div>
+	</section>
 
-				<p>
-				我们不提供流水线申请服务，而是帮助你理解自己的处境、
-				学术体系的规则，以及下一步最值得投入的方向。
-				</p>
-			</section>
-			</main>
-		<Footer />
-	</body>
-</html>
+	<section class="mx-auto max-w-6xl px-6 py-16">
+		<div class="flex items-baseline justify-between">
+			<h2 class="text-2xl font-semibold text-ink md:text-3xl">服务</h2>
+			<a href="/services" class="text-sm font-medium text-accent hover:underline">查看全部 &rarr;</a>
+		</div>
+		<div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+			{
+				services.map((service) => (
+					<ServiceCard
+						title={service.data.shortTitle}
+						tagline={service.data.tagline}
+						href={`/services/${service.id}`}
+						icon={service.data.icon}
+					/>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="mx-auto max-w-6xl px-6 py-16">
+		<h2 class="text-2xl font-semibold text-ink md:text-3xl">我们的流程</h2>
+		<p class="mt-3 max-w-2xl text-sm text-ink-soft">
+			咨询是一个多步骤的持续工作流，每一步的产出都是下一步的输入。
+		</p>
+		<div class="mt-10">
+			<Timeline steps={processSteps} />
+		</div>
+	</section>
+
+	<section class="mx-auto max-w-6xl px-6 py-16">
+		<div class="flex items-baseline justify-between">
+			<h2 class="text-2xl font-semibold text-ink md:text-3xl">案例</h2>
+			<a href="/case-studies" class="text-sm font-medium text-accent hover:underline">查看全部 &rarr;</a>
+		</div>
+		<p class="mt-3 max-w-2xl text-sm text-ink-soft">
+			以下案例为匿名化的复合场景，基于真实咨询模式整理，用于说明典型问题与应对方式。
+		</p>
+		<div class="mt-8 grid gap-6 md:grid-cols-3">
+			{
+				caseStudies.map((study) => (
+					<a
+						href={`/case-studies/${study.id}`}
+						class="group flex flex-col gap-3 rounded-2xl border border-line bg-paper p-6 transition-colors hover:border-accent"
+					>
+						<h3 class="text-base font-semibold text-ink">{study.data.title}</h3>
+						<p class="text-sm leading-relaxed text-ink-soft">{study.data.summary}</p>
+						<span class="mt-auto text-sm font-medium text-accent opacity-0 transition-opacity group-hover:opacity-100">
+							阅读案例 &rarr;
+						</span>
+					</a>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="mx-auto max-w-6xl px-6 py-16">
+		<h2 class="text-2xl font-semibold text-ink md:text-3xl">常见问题</h2>
+		<div class="mt-8">
+			<FaqAccordion items={homeFaqs} />
+		</div>
+	</section>
+
+	<CTA
+		heading="想清楚下一步该做什么？"
+		body="先做一次背景诊断，我们会给你一个有据可查的路径建议。"
+		buttonLabel="预约咨询"
+		buttonHref="/book-a-call"
+	/>
+</Layout>

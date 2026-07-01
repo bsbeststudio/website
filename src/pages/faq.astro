@@ -1,0 +1,69 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import JsonLd from '../components/JsonLd.astro';
+import CTA from '../components/CTA.astro';
+
+const allFaqs = (await getCollection('faqs')).sort((a, b) => a.data.order - b.data.order);
+
+const CATEGORY_LABELS: Record<string, string> = {
+	general: '综合问题',
+	predoc: 'Predoc',
+	phd: 'PhD 申请',
+	career: '职业规划',
+	cv: '简历',
+	interview: '面试',
+};
+
+const categories = Object.keys(CATEGORY_LABELS).filter((cat) => allFaqs.some((f) => f.data.category === cat));
+
+const faqPageSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'FAQPage',
+	mainEntity: allFaqs.map((f) => ({
+		'@type': 'Question',
+		name: f.data.question,
+		acceptedAnswer: { '@type': 'Answer', text: f.data.answer },
+	})),
+};
+
+const title = '常见问题';
+const description = '关于时间规划、Predoc、PhD 申请、简历与面试的常见问题解答。';
+---
+
+<Layout title={title} description={description}>
+	<JsonLd data={faqPageSchema} />
+
+	<section class="mx-auto max-w-3xl px-6 pb-12 pt-20 md:pt-28">
+		<p class="text-sm font-medium uppercase tracking-wide text-accent">FAQ</p>
+		<h1 class="mt-4 text-4xl font-semibold leading-tight tracking-tight text-ink md:text-5xl">常见问题</h1>
+		<p class="mt-6 text-lg leading-relaxed text-ink-soft">
+			如果你的问题不在下面的列表中，欢迎直接联系我们。
+		</p>
+	</section>
+
+	<section class="mx-auto max-w-3xl px-6 pb-20 space-y-14">
+		{
+			categories.map((category) => (
+				<div>
+					<h2 class="text-xl font-semibold text-ink">{CATEGORY_LABELS[category]}</h2>
+					<div class="mt-5">
+						<FaqAccordion
+							items={allFaqs
+								.filter((f) => f.data.category === category)
+								.map((f) => ({ question: f.data.question, answer: f.data.answer }))}
+						/>
+					</div>
+				</div>
+			))
+		}
+	</section>
+
+	<CTA
+		heading="还有其他问题？"
+		body="预约一次咨询，我们可以针对你的具体情况详细解答。"
+		buttonLabel="预约咨询"
+		buttonHref="/book-a-call"
+	/>
+</Layout>

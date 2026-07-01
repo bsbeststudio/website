@@ -1,0 +1,15 @@
+---
+// Reserved for future use once real, attributable client feedback is
+// available. Not currently rendered on any page — see plan notes.
+interface Props {
+	quote: string;
+	role: string;
+}
+
+const { quote, role } = Astro.props;
+---
+
+<figure class="rounded-2xl border border-line bg-paper p-8">
+	<blockquote class="text-lg leading-relaxed text-ink">"{quote}"</blockquote>
+	<figcaption class="mt-4 text-sm text-ink-soft">{role}</figcaption>
+</figure>

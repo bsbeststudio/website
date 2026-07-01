@@ -1,0 +1,38 @@
+---
+import Seo from '../components/Seo.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import { CONTACT_EMAIL, SITE_TITLE, SITE_URL } from '../consts';
+
+interface Props {
+	title: string;
+	description: string;
+	structuredData?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const { title, description, structuredData } = Astro.props;
+
+const organizationSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'Organization',
+	name: SITE_TITLE,
+	url: SITE_URL,
+	email: CONTACT_EMAIL,
+};
+
+const schemas = [organizationSchema, ...(Array.isArray(structuredData) ? structuredData : structuredData ? [structuredData] : [])];
+---
+
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<Seo title={title} description={description} structuredData={schemas} />
+	</head>
+	<body class="flex min-h-screen flex-col antialiased">
+		<Navigation />
+		<main class="flex-1">
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>

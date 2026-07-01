@@ -1,0 +1,37 @@
+---
+const ICONS: Record<string, string> = {
+	compass: 'M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm3.4 6.6-1.7 5.1a1 1 0 0 1-.6.6l-5.1 1.7 1.7-5.1a1 1 0 0 1 .6-.6Z',
+	academic: 'M12 3 1 9l11 6 9-4.9V17h2V9Zm0 8.2L4.5 7.4 12 3.6l7.5 3.8ZM5 13.2V17c0 1.7 3.1 4 7 4s7-2.3 7-4v-3.8l-7 3.8Z',
+	chart: 'M4 20V10h3v10Zm6.5 0V4h3v16ZM17 20v-7h3v7Z',
+	document: 'M6 2h9l5 5v15H6Zm8 1.5V8h4.5ZM8 12h8v1.5H8Zm0 3h8v1.5H8Zm0-6h4v1.5H8Z',
+	chat: 'M4 4h16v12H7l-3 3Zm4 4h8v1.5H8Zm0 3h5v1.5H8Z',
+};
+
+interface Props {
+	title: string;
+	tagline: string;
+	href: string;
+	icon: string;
+}
+
+const { title, tagline, href, icon } = Astro.props;
+const path = ICONS[icon] ?? ICONS.compass;
+---
+
+<a
+	href={href}
+	class="group flex flex-col gap-4 rounded-2xl border border-line bg-paper p-6 transition-colors hover:border-accent"
+>
+	<span
+		class="flex h-10 w-10 items-center justify-center rounded-full bg-accent-soft text-accent"
+	>
+		<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d={path}></path></svg>
+	</span>
+	<div>
+		<h3 class="text-lg font-semibold text-ink">{title}</h3>
+		<p class="mt-1.5 text-sm leading-relaxed text-ink-soft">{tagline}</p>
+	</div>
+	<span class="mt-auto text-sm font-medium text-accent opacity-0 transition-opacity group-hover:opacity-100">
+		了解详情 &rarr;
+	</span>
+</a>

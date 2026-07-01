@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Timeline from '../components/Timeline.astro';
+import { CALENDLY_URL, CONTACT_EMAIL, WECHAT_ACCOUNT } from '../consts';
+
+const title = '预约咨询';
+const description = '通过微信公众号预约一次背景诊断咨询，了解适合你的具体路径与服务。';
+
+const steps = [
+	{ title: '关注公众号', description: `搜索并关注微信公众号「${WECHAT_ACCOUNT}」，或通过邮箱联系我们。` },
+	{ title: '简要说明背景', description: '留言中简要说明你目前的阶段和主要问题，方便我们提前准备。' },
+	{ title: '安排背景诊断', description: '我们会与你确认时间，进行第一次背景诊断咨询。' },
+	{ title: '确定后续服务', description: '根据诊断结果，建议最适合你当前阶段的具体服务。' },
+];
+---
+
+<Layout title={title} description={description}>
+	<section class="mx-auto max-w-3xl px-6 pb-12 pt-20 md:pt-28">
+		<p class="text-sm font-medium uppercase tracking-wide text-accent">Book a Call</p>
+		<h1 class="mt-4 text-4xl font-semibold leading-tight tracking-tight text-ink md:text-5xl">预约咨询</h1>
+		<p class="mt-6 text-lg leading-relaxed text-ink-soft">
+			目前预约咨询通过微信公众号进行。关注后留言说明你的情况，我们会尽快与你确认时间。
+		</p>
+	</section>
+
+	{
+		CALENDLY_URL ? (
+			<section class="mx-auto max-w-3xl px-6 pb-16">
+				<div class="overflow-hidden rounded-2xl border border-line">
+					<iframe src={CALENDLY_URL} width="100%" height="700" title="预约时间" />
+				</div>
+			</section>
+		) : (
+			<section class="mx-auto max-w-3xl px-6 pb-16">
+				<div class="rounded-2xl border border-line bg-paper-raised p-8">
+					<h2 class="text-lg font-semibold text-ink">如何预约</h2>
+					<ol class="mt-6">
+						<Timeline steps={steps} />
+					</ol>
+					<div class="mt-8 flex flex-wrap gap-4 text-sm">
+						<span class="rounded-full bg-ink px-5 py-2.5 font-medium text-paper">
+							微信公众号：{WECHAT_ACCOUNT}
+						</span>
+						<a
+							href={`mailto:${CONTACT_EMAIL}`}
+							class="rounded-full border border-line px-5 py-2.5 font-medium text-ink hover:border-accent hover:text-accent"
+						>
+							或发送邮件：{CONTACT_EMAIL}
+						</a>
+					</div>
+				</div>
+			</section>
+		)
+	}
+</Layout>

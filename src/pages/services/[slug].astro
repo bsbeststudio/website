@@ -1,0 +1,93 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Timeline from '../../components/Timeline.astro';
+import FaqAccordion from '../../components/FaqAccordion.astro';
+import CTA from '../../components/CTA.astro';
+import { SITE_TITLE, SITE_URL } from '../../consts';
+
+export async function getStaticPaths() {
+	const services = await getCollection('services');
+	return services.map((service) => ({
+		params: { slug: service.id },
+		props: { service },
+	}));
+}
+
+const { service } = Astro.props;
+const { data } = service;
+
+const faqs = (await getCollection('faqs'))
+	.filter((f) => f.data.category === data.faqCategory)
+	.sort((a, b) => a.data.order - b.data.order);
+
+const professionalServiceSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'Service',
+	serviceType: data.title,
+	name: `${data.title} | ${SITE_TITLE}`,
+	description: data.description,
+	url: `${SITE_URL}/services/${service.id}`,
+	provider: {
+		'@type': 'Organization',
+		name: SITE_TITLE,
+	},
+};
+---
+
+<Layout title={data.title} description={data.description} structuredData={professionalServiceSchema}>
+	<section class="mx-auto max-w-3xl px-6 pb-12 pt-20 md:pt-28">
+		<p class="text-sm font-medium uppercase tracking-wide text-accent">Services</p>
+		<h1 class="mt-4 text-4xl font-semibold leading-tight tracking-tight text-ink md:text-5xl">
+			{data.title}
+		</h1>
+		<p class="mt-6 text-lg leading-relaxed text-ink-soft">{data.tagline}</p>
+	</section>
+
+	<section class="mx-auto max-w-3xl px-6 py-8">
+		<h2 class="text-2xl font-semibold text-ink">为什么需要</h2>
+		<p class="mt-4 text-base leading-relaxed text-ink-soft">{data.whyNeeded}</p>
+	</section>
+
+	<section class="mx-auto max-w-3xl px-6 py-8">
+		<h2 class="text-2xl font-semibold text-ink">适合谁</h2>
+		<ul class="mt-4 space-y-3 text-base leading-relaxed text-ink-soft">
+			{data.whoFor.map((item: string) => <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" /><span>{item}</span></li>)}
+		</ul>
+	</section>
+
+	<section class="mx-auto max-w-3xl px-6 py-8">
+		<h2 class="text-2xl font-semibold text-ink">流程</h2>
+		<div class="mt-8">
+			<Timeline steps={data.process} />
+		</div>
+	</section>
+
+	<section class="mx-auto max-w-3xl px-6 py-8">
+		<h2 class="text-2xl font-semibold text-ink">成果</h2>
+		<ul class="mt-4 space-y-3 text-base leading-relaxed text-ink-soft">
+			{data.outcomes.map((item: string) => <li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" /><span>{item}</span></li>)}
+		</ul>
+	</section>
+
+	{
+		faqs.length > 0 && (
+			<section class="mx-auto max-w-3xl px-6 py-8">
+				<h2 class="text-2xl font-semibold text-ink">常见问题</h2>
+				<div class="mt-6">
+					<FaqAccordion
+						items={faqs.map((f) => ({ question: f.data.question, answer: f.data.answer }))}
+						withSchema
+					/>
+				</div>
+			</section>
+		)
+	}
+
+	<CTA
+		heading={`预约 ${data.shortTitle}`}
+		body="第一步是一次背景诊断，确认这项服务是否是当前最优先的选择。"
+		buttonLabel="预约咨询"
+		buttonHref="/book-a-call"
+	/>
+</Layout>

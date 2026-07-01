@@ -1,0 +1,70 @@
+---
+import { NAV_LINKS, SITE_TITLE } from '../consts';
+
+const currentPath = Astro.url.pathname;
+
+function isActive(href: string) {
+	if (href === '/') return currentPath === '/';
+	return currentPath.startsWith(href);
+}
+---
+
+<header class="border-b border-line/70 bg-paper/90 backdrop-blur sticky top-0 z-40">
+	<nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+		<a href="/" class="text-lg font-semibold tracking-tight text-ink">
+			{SITE_TITLE}
+		</a>
+
+		<ul class="hidden items-center gap-8 text-sm text-ink-soft md:flex">
+			{
+				NAV_LINKS.map((link) => (
+					<li>
+						<a
+							href={link.href}
+							class:list={[
+								'transition-colors hover:text-ink',
+								isActive(link.href) && 'text-ink font-medium',
+							]}
+						>
+							{link.label}
+						</a>
+					</li>
+				))
+			}
+		</ul>
+
+		<a
+			href="/book-a-call"
+			class="hidden rounded-full bg-ink px-5 py-2 text-sm font-medium text-paper transition-colors hover:bg-accent md:inline-block"
+		>
+			预约咨询
+		</a>
+
+		<details class="relative md:hidden">
+			<summary class="list-none cursor-pointer rounded-full border border-line px-3 py-1.5 text-sm text-ink">
+				菜单
+			</summary>
+			<div class="absolute right-0 mt-2 w-56 rounded-xl border border-line bg-paper p-4 shadow-lg">
+				<ul class="flex flex-col gap-3 text-sm text-ink-soft">
+					{
+						NAV_LINKS.map((link) => (
+							<li>
+								<a href={link.href} class="block hover:text-ink">
+									{link.label}
+								</a>
+							</li>
+						))
+					}
+					<li class="pt-2">
+						<a
+							href="/book-a-call"
+							class="block rounded-full bg-ink px-4 py-2 text-center font-medium text-paper"
+						>
+							预约咨询
+						</a>
+					</li>
+				</ul>
+			</div>
+		</details>
+	</nav>
+</header>

@@ -1,13 +1,18 @@
 // @ts-check
 
-import mdx from '@astrojs/mdx';
+import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 import { defineConfig, fontProviders } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://example.com',
-	integrations: [mdx(), sitemap()],
+	// TODO: replace with the production domain once it is registered/live.
+	site: 'https://www.beststudio-edu.com',
+	output: 'static',
+	integrations: [sitemap()],
+	vite: {
+		plugins: [tailwindcss()],
+	},
 	fonts: [
 		{
 			provider: fontProviders.local(),
