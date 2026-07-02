@@ -1,0 +1,52 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import CTA from '../../components/CTA.astro';
+
+const title = '陪跑与咨询';
+const description = '学术生涯规划服务：长期陪跑、按小时付费的咨询，以及硕博 Predoc/PhD 申请规划入口。';
+
+const items = [
+	{
+		title: '陪跑',
+		tagline: '跨阶段长期陪伴，适合起步早、需要持续节点把控的学生',
+		href: '/programs/mentorship',
+		icon: 'chart' as const,
+	},
+	{
+		title: '咨询',
+		tagline: '按小时付费的 office hours，适合有具体问题需要快速诊断',
+		href: '/programs/consulting',
+		icon: 'chat' as const,
+	},
+	{
+		title: 'Predoc / PhD 申请规划',
+		tagline: '从背景诊断到材料定制的完整申请规划服务',
+		href: '/programs/predoc',
+		icon: 'academic' as const,
+	},
+];
+---
+
+<Layout title={title} description={description}>
+	<section class="mx-auto max-w-3xl px-6 pb-12 pt-20 md:pt-28">
+		<p class="text-sm font-medium uppercase tracking-wide text-accent">Programs</p>
+		<h1 class="mt-4 text-4xl font-semibold leading-tight tracking-tight text-ink md:text-5xl">陪跑与咨询</h1>
+		<p class="mt-6 text-lg leading-relaxed text-ink-soft">
+			学术生涯规划服务——从长期陪跑到单次咨询，覆盖不同阶段的规划需求。
+		</p>
+	</section>
+
+	<section class="mx-auto max-w-6xl px-6 pb-20">
+		<div class="grid gap-6 sm:grid-cols-3">
+			{items.map((item) => <ServiceCard {...item} />)}
+		</div>
+	</section>
+
+	<CTA
+		heading="不确定该从哪一项开始？"
+		body="预约一次背景诊断，我们会建议最适合你当前阶段的服务。"
+		buttonLabel="预约咨询"
+		buttonHref="/contact"
+	/>
+</Layout>

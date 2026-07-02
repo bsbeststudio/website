@@ -1,13 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Timeline from '../components/Timeline.astro';
-import { CALENDLY_URL, CONTACT_EMAIL, WECHAT_ACCOUNT } from '../consts';
+import { CALENDLY_URL, CONTACT_EMAIL, DIAGNOSTIC_MAILTO, WECHAT_ACCOUNT } from '../consts';
 
 const title = '预约咨询';
 const description = '通过微信公众号预约一次背景诊断咨询，了解适合你的具体路径与服务。';
 
 const steps = [
-	{ title: '关注公众号', description: `搜索并关注微信公众号「${WECHAT_ACCOUNT}」，或通过邮箱联系我们。` },
+	{ title: '关注公众号', description: `搜索并关注微信公众号「${WECHAT_ACCOUNT}」——关注和咨询都通过同一个账号进行。` },
 	{ title: '简要说明背景', description: '留言中简要说明你目前的阶段和主要问题，方便我们提前准备。' },
 	{ title: '安排背景诊断', description: '我们会与你确认时间，进行第一次背景诊断咨询。' },
 	{ title: '确定后续服务', description: '根据诊断结果，建议最适合你当前阶段的具体服务。' },
@@ -52,4 +52,19 @@ const steps = [
 			</section>
 		)
 	}
+
+	<section class="mx-auto max-w-3xl px-6 pb-16">
+		<div class="rounded-2xl border border-line bg-paper p-8">
+			<h2 class="text-lg font-semibold text-ink">不方便加微信？先发一封邮件</h2>
+			<p class="mt-2 text-sm leading-relaxed text-ink-soft">
+				点击下方按钮会打开你的邮件客户端，帮你填好一份简单的背景模板，补充信息后直接发送即可——这不是在线表单，只是帮你省去手动打字的第一步。
+			</p>
+			<a
+				href={DIAGNOSTIC_MAILTO}
+				class="mt-5 inline-block rounded-full bg-ink px-6 py-3 text-sm font-medium text-paper transition-colors hover:bg-accent"
+			>
+				发送背景诊断请求
+			</a>
+		</div>
+	</section>
 </Layout>

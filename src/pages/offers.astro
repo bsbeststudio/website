@@ -1,0 +1,66 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import OfferCard from '../components/OfferCard.astro';
+import CTA from '../components/CTA.astro';
+
+const offers = (await getCollection('offers')).sort((a, b) => a.data.order - b.data.order);
+const predocOffers = offers.filter((o) => o.data.category === 'predoc');
+const phdOffers = offers.filter((o) => o.data.category === 'phd');
+
+const title = 'Offer 墙';
+const description = '按 Predoc / PhD 分类展示的匿名化复合场景，说明典型背景如何走到结果。';
+---
+
+<Layout title={title} description={description}>
+	<section class="mx-auto max-w-3xl px-6 pb-8 pt-20 md:pt-28">
+		<p class="text-sm font-medium uppercase tracking-wide text-accent">Offer Wall</p>
+		<h1 class="mt-4 text-4xl font-semibold leading-tight tracking-tight text-ink md:text-5xl">
+			路径是否可复制，比院校密度更重要
+		</h1>
+		<p class="mt-6 text-lg leading-relaxed text-ink-soft">
+			以下为匿名化的复合场景，按背景类型分类展示，基于真实咨询中反复出现的问题模式整理，不代表具体真实姓名或机构。
+		</p>
+	</section>
+
+	<section class="mx-auto max-w-6xl px-6 py-8">
+		<h2 class="text-2xl font-semibold text-ink">Predoc</h2>
+		<div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+			{
+				predocOffers.map((offer) => (
+					<OfferCard
+						schoolTier={offer.data.schoolTier}
+						backgroundTag={offer.data.backgroundTag}
+						timeline={offer.data.timeline}
+						insight={offer.data.insight}
+						caseStudyHref={offer.data.caseStudySlug ? `/case-studies/${offer.data.caseStudySlug}` : undefined}
+					/>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="mx-auto max-w-6xl px-6 py-8 pb-16">
+		<h2 class="text-2xl font-semibold text-ink">PhD</h2>
+		<div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+			{
+				phdOffers.map((offer) => (
+					<OfferCard
+						schoolTier={offer.data.schoolTier}
+						backgroundTag={offer.data.backgroundTag}
+						timeline={offer.data.timeline}
+						insight={offer.data.insight}
+						caseStudyHref={offer.data.caseStudySlug ? `/case-studies/${offer.data.caseStudySlug}` : undefined}
+					/>
+				))
+			}
+		</div>
+	</section>
+
+	<CTA
+		heading="想知道你自己的背景属于哪一类？"
+		body="预约一次背景诊断，获得针对你具体情况的分析。"
+		buttonLabel="预约咨询"
+		buttonHref="/book-a-call"
+	/>
+</Layout>

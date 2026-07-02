@@ -1,11 +1,15 @@
 ---
-import { NAV_LINKS, SITE_TITLE } from '../consts';
+import { NAV_GROUPS, NAV_SIMPLE_LINKS, SITE_TITLE } from '../consts';
 
 const currentPath = Astro.url.pathname;
 
 function isActive(href: string) {
 	if (href === '/') return currentPath === '/';
 	return currentPath.startsWith(href);
+}
+
+function groupActive(children: readonly { href: string }[]) {
+	return children.some((c) => isActive(c.href));
 }
 ---
 
@@ -15,9 +19,37 @@ function isActive(href: string) {
 			{SITE_TITLE}
 		</a>
 
-		<ul class="hidden items-center gap-8 text-sm text-ink-soft md:flex">
+		<ul class="hidden items-center gap-5 text-sm text-ink-soft lg:flex">
 			{
-				NAV_LINKS.map((link) => (
+				NAV_GROUPS.map((group) => (
+					<li class="relative">
+						<details class="group">
+							<summary
+								class:list={[
+									'flex cursor-pointer list-none items-center gap-1 transition-colors hover:text-ink',
+									groupActive(group.children) && 'text-ink font-medium',
+								]}
+							>
+								{group.label}
+								<span class="text-xs text-ink-soft">▾</span>
+							</summary>
+							<div class="absolute left-0 mt-2 w-56 rounded-xl border border-line bg-paper p-3 shadow-lg">
+								<ul class="flex flex-col gap-1">
+									{group.children.map((child) => (
+										<li>
+											<a href={child.href} class="block rounded-lg px-3 py-2 text-sm text-ink-soft hover:bg-paper-raised hover:text-ink">
+												{child.label}
+											</a>
+										</li>
+									))}
+								</ul>
+							</div>
+						</details>
+					</li>
+				))
+			}
+			{
+				NAV_SIMPLE_LINKS.map((link) => (
 					<li>
 						<a
 							href={link.href}
@@ -34,30 +66,50 @@ function isActive(href: string) {
 		</ul>
 
 		<a
-			href="/book-a-call"
-			class="hidden rounded-full bg-ink px-5 py-2 text-sm font-medium text-paper transition-colors hover:bg-accent md:inline-block"
+			href="/contact"
+			class="hidden rounded-full bg-ink px-5 py-2 text-sm font-medium text-paper transition-colors hover:bg-accent lg:inline-block"
 		>
 			预约咨询
 		</a>
 
-		<details class="relative md:hidden">
+		<details class="relative lg:hidden">
 			<summary class="list-none cursor-pointer rounded-full border border-line px-3 py-1.5 text-sm text-ink">
 				菜单
 			</summary>
-			<div class="absolute right-0 mt-2 w-56 rounded-xl border border-line bg-paper p-4 shadow-lg">
-				<ul class="flex flex-col gap-3 text-sm text-ink-soft">
+			<div class="absolute right-0 mt-2 w-64 rounded-xl border border-line bg-paper p-4 shadow-lg">
+				<ul class="flex flex-col gap-4 text-sm text-ink-soft">
 					{
-						NAV_LINKS.map((link) => (
+						NAV_GROUPS.map((group) => (
 							<li>
-								<a href={link.href} class="block hover:text-ink">
-									{link.label}
-								</a>
+								<p class="font-medium text-ink">{group.label}</p>
+								<ul class="mt-2 flex flex-col gap-2 pl-3">
+									{group.children.map((child) => (
+										<li>
+											<a href={child.href} class="block hover:text-ink">
+												{child.label}
+											</a>
+										</li>
+									))}
+								</ul>
 							</li>
 						))
 					}
-					<li class="pt-2">
+					<li class="border-t border-line pt-3">
+						<ul class="flex flex-col gap-2">
+							{
+								NAV_SIMPLE_LINKS.map((link) => (
+									<li>
+										<a href={link.href} class="block hover:text-ink">
+											{link.label}
+										</a>
+									</li>
+								))
+							}
+						</ul>
+					</li>
+					<li class="pt-1">
 						<a
-							href="/book-a-call"
+							href="/contact"
 							class="block rounded-full bg-ink px-4 py-2 text-center font-medium text-paper"
 						>
 							预约咨询

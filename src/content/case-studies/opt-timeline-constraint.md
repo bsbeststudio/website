@@ -1,5 +1,6 @@
 ---
 order: 3
+track: phd
 title: OPT 时间线约束：把签证纳入路径规划的核心变量
 summary: OPT 即将到期时，路径规划必须把签证时间线当作硬约束，而不是假设可以无限续约。
 background: |

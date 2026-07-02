@@ -1,0 +1,56 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CTA from '../../components/CTA.astro';
+import { TUTORING_MAILTO } from '../../consts';
+
+const title = '1v1课业辅导';
+const description = '面向本硕博学生的一对一课业辅导：选课指导、课业规划、双语培优、作业辅导、成绩跟踪与升阶计划。';
+
+const features = [
+	{ title: '选课指导', description: '结合培养方案和长期目标，判断每学期的选课优先级。' },
+	{ title: '综合课业规划', description: '把单学期任务放进多学期的整体节奏里，避免临时抱佛脚。' },
+	{ title: '在线双语课程培优', description: '中英双语讲解核心课程，补齐语言和专业术语的双重门槛。' },
+	{ title: '课后作业辅导', description: '针对具体作业和 problem set 答疑，讲清楚解题逻辑而不是只给答案。' },
+	{ title: '考前冲刺备考', description: '期中期末前的针对性复习和模拟测验。' },
+	{ title: '成绩跟踪分析', description: '定期回顾成绩变化，及时调整辅导重点。' },
+	{ title: '高等课程升阶计划', description: '为准备修读更高阶课程的学生提前搭建知识基础。' },
+	{ title: '学术生涯规划', description: '课业衔接层面的长期规划建议（不涉及择校判断等深度申请咨询）。' },
+	{ title: '申请文书写作', description: '文书语言润色与表达优化（不涉及选校策略或推荐人网络解读）。' },
+	{ title: '实习及求职辅导', description: '简历语言和面试表达层面的辅导。' },
+];
+---
+
+<Layout title={title} description={description}>
+	<section class="mx-auto max-w-3xl px-6 pb-12 pt-20 md:pt-28">
+		<p class="text-sm font-medium uppercase tracking-wide text-accent">Courses · 1v1课业辅导</p>
+		<h1 class="mt-4 text-4xl font-semibold leading-tight tracking-tight text-ink md:text-5xl">1v1课业辅导</h1>
+		<p class="mt-6 text-lg leading-relaxed text-ink-soft">
+			一对一跟进本硕博阶段的课业需求，覆盖从选课到求职表达的多个环节。
+		</p>
+		<p class="mt-4 rounded-xl bg-accent-soft px-4 py-3 text-sm text-ink-soft">
+			说明：本服务中的"学术生涯规划""申请文书写作"仅限于课业衔接建议与文书语言润色层面。如果你需要择校策略、推荐信网络分析等深度申请规划，请查看
+			<a href="/programs/predoc" class="text-accent hover:underline">Predoc / PhD 申请规划</a>。
+		</p>
+	</section>
+
+	<section class="mx-auto max-w-3xl px-6 pb-8">
+		<h2 class="text-2xl font-semibold text-ink">服务内容</h2>
+		<div class="mt-6 grid gap-4 sm:grid-cols-2">
+			{
+				features.map((f) => (
+					<div class="rounded-xl border border-line bg-paper p-5">
+						<p class="text-sm font-semibold text-ink">{f.title}</p>
+						<p class="mt-1.5 text-sm leading-relaxed text-ink-soft">{f.description}</p>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<CTA
+		heading="想了解具体的辅导安排？"
+		body="联系课程辅导小助手，告诉我们你的年级和当前课业情况。"
+		buttonLabel="联系课程辅导小助手"
+		buttonHref={TUTORING_MAILTO}
+	/>
+</Layout>

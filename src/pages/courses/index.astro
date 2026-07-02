@@ -1,0 +1,53 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import CTA from '../../components/CTA.astro';
+import { TUTORING_MAILTO } from '../../consts';
+
+const title = '课程辅导';
+const description = '1v1课业辅导、录播课程与考前冲刺——面向本硕博阶段的经济学/金融/统计课业支持。';
+
+const items = [
+	{
+		title: '1v1课业辅导',
+		tagline: '选课指导、课业规划、双语培优、作业辅导，一对一跟进',
+		href: '/courses/tutoring',
+		icon: 'compass' as const,
+	},
+	{
+		title: '录播课程',
+		tagline: '高微、高计、高宏、递归宏观、中级计量，五门系统课程',
+		href: '/courses/recorded',
+		icon: 'document' as const,
+	},
+	{
+		title: '考前冲刺',
+		tagline: 'GRE/GMAT定量、qualifying exam、技术面试摸底',
+		href: '/courses/exam-prep',
+		icon: 'chart' as const,
+	},
+];
+---
+
+<Layout title={title} description={description}>
+	<section class="mx-auto max-w-3xl px-6 pb-12 pt-20 md:pt-28">
+		<p class="text-sm font-medium uppercase tracking-wide text-accent">Courses</p>
+		<h1 class="mt-4 text-4xl font-semibold leading-tight tracking-tight text-ink md:text-5xl">课程辅导</h1>
+		<p class="mt-6 text-lg leading-relaxed text-ink-soft">
+			面向本科到博士阶段的课业支持——从单科补强到系统性录播课程，再到考试与面试前的针对性冲刺。
+		</p>
+	</section>
+
+	<section class="mx-auto max-w-6xl px-6 pb-20">
+		<div class="grid gap-6 sm:grid-cols-3">
+			{items.map((item) => <ServiceCard {...item} />)}
+		</div>
+	</section>
+
+	<CTA
+		heading="不确定该从哪一项开始？"
+		body="联系课程辅导小助手，我们会根据你的年级和课业情况建议合适的服务。"
+		buttonLabel="联系课程辅导小助手"
+		buttonHref={TUTORING_MAILTO}
+	/>
+</Layout>

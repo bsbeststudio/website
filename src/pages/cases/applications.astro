@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import CTA from '../../components/CTA.astro';
+
+const caseStudies = (await getCollection('case-studies')).sort((a, b) => a.data.order - b.data.order);
+
+const title = '申请案例';
+const description = '基于真实咨询模式整理的匿名化复合场景，说明典型问题的诊断与应对方式。';
+---
+
+<Layout title={title} description={description}>
+	<section class="mx-auto max-w-3xl px-6 pb-8 pt-20 md:pt-28">
+		<p class="text-sm font-medium uppercase tracking-wide text-accent">Cases · 申请规划</p>
+		<h1 class="mt-4 text-4xl font-semibold leading-tight tracking-tight text-ink md:text-5xl">申请案例</h1>
+		<p class="mt-6 text-lg leading-relaxed text-ink-soft">
+			出于保密考虑，以下案例均为匿名化的复合场景——基于真实咨询中反复出现的问题模式整理而成，不对应任何具体个人。
+		</p>
+	</section>
+
+	<section class="mx-auto max-w-6xl px-6 pb-16">
+		<div class="grid gap-6 md:grid-cols-2">
+			{
+				caseStudies.map((study) => (
+					<a
+						href={`/case-studies/${study.id}`}
+						class="group flex flex-col gap-3 rounded-2xl border border-line bg-paper p-7 transition-colors hover:border-accent"
+					>
+						<h2 class="text-lg font-semibold text-ink">{study.data.title}</h2>
+						<p class="text-sm leading-relaxed text-ink-soft">{study.data.summary}</p>
+						<span class="mt-auto text-sm font-medium text-accent opacity-0 transition-opacity group-hover:opacity-100">
+							阅读案例 &rarr;
+						</span>
+					</a>
+				))
+			}
+		</div>
+	</section>
+
+	<CTA
+		heading="想知道你自己的情况适合哪条路径？"
+		body="预约一次背景诊断，获得针对你具体情况的分析。"
+		buttonLabel="预约咨询"
+		buttonHref="/contact"
+	/>
+</Layout>

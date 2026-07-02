@@ -1,46 +1,199 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CTA from '../components/CTA.astro';
+import { ZHIHU_URL } from '../consts';
 
 const title = '关于我们';
-const description = 'Best Studio 的方法论：以 PI 与招生委员会的真实评估逻辑为核心，而非营销式的申请建议。';
+const description =
+	'Best Studio 是一家覆盖课业辅导与学术生涯规划的工作室，服务本硕博阶段的经济学、金融、统计等相关专业学生。';
+
+const team = [
+	{
+		role: '主理人',
+		description:
+			'负责整体路径判断与关键决策节点的把控。具备北美顶尖院校经济学博士背景，博士阶段深度参与研究型 RA 招募与推荐信撰写的一线观察，统筹每位学生的诊断与规划全流程。',
+	},
+	{
+		role: '科研经历顾问',
+		description:
+			'专注于研究经历梳理、研究主线构建与材料定制。来自北美经济学 PhD 培养体系内部视角，熟悉委员会评审习惯与 PI 招募偏好的实际差异。',
+	},
+	{
+		role: '案例研究员',
+		description:
+			'持续跟踪 Predoc / PhD 招募逻辑的变化，将真实咨询中反复出现的问题模式提炼成可复用的决策规则，维护内部案例库与诊断框架的迭代。',
+	},
+];
+
+const insights = [
+	{
+		question: '为什么国内机构推荐信在北美委员会那里"打折"？',
+		answer:
+			'推荐信的权重取决于两个维度：写信人对候选人的了解程度，以及写信人在目标学术网络中的节点位置。后者是学生最常忽略的——委员会倾向于通过已知的信任网络交叉验证推荐信的可信度，一封来自北美顶尖项目 PI 的推荐信，可以在数小时内被委员会成员通过非正式渠道确认，而来自国内机构的推荐信则缺乏这个信道。这不是歧视，而是信息验证成本的差异。',
+	},
+	{
+		question: 'Predoc 材料投出去没有回音，是背景不够还是材料问题？',
+		answer:
+			'大多数情况下是材料问题。PI 在筛选 Predoc 候选人时，最优先看的是"这个人能不能直接参与我当前的项目"——他会直接对照你的 CV 和 Cover Letter 来找项目相关的技术技能和研究经验。如果你发了一封通用的 Cover Letter，PI 需要花额外精力去判断你是否合适，大多数人不会花这个时间。定制化不是锦上添花，而是基本门槛。',
+	},
+	{
+		question: '课程 term paper 算不算研究经历？',
+		answer:
+			'在 PI 和委员会眼中，课程项目的权重远低于真实的 PI 合作研究——原因不在于工作量，而在于监督结构：独立完成的课程项目没有来自 PI 的持续反馈和修正，无法展示你在真实科研环境中处理模糊问题的能力，也不会产生有说服力的推荐信。如果简历上的研究经历全部是独立的课程项目，优先级最高的任务不是打磨措辞，而是获取哪怕一次真实的 RA 机会。',
+	},
+];
 ---
 
 <Layout title={title} description={description}>
-	<section class="mx-auto max-w-3xl px-6 pb-16 pt-20 md:pt-28">
+	<!-- Hero -->
+	<section class="mx-auto max-w-3xl px-6 pb-12 pt-20 md:pt-28">
 		<p class="text-sm font-medium uppercase tracking-wide text-accent">About Best Studio</p>
 		<h1 class="mt-4 text-4xl font-semibold leading-tight tracking-tight text-ink md:text-5xl">
-			我们只做一件事：把决策拆开，讲清楚每一步的依据
+			从课业提升到学术生涯决策，我们把每一步都讲清楚依据
 		</h1>
 		<p class="mt-6 text-lg leading-relaxed text-ink-soft">
-			Best Studio 专注于研究导向学生的学术早期职业规划——Predoc 申请、PhD 申请、研究职业路径选择。我们的建议不来自"大家都这么说"，而来自对 PI 招募逻辑、招生委员会评估维度和真实决策规则的持续拆解。
+			Best Studio 是一家覆盖本硕博阶段的课业辅导与学术生涯规划工作室，服务经济学、金融、统计等相关专业的学生。业务分为两条线：由主讲人张博带领的课程辅导团队（1v1课业辅导、录播课程、考前冲刺），以及独立运营的学术生涯规划团队（陪跑、咨询、Predoc/PhD 申请规划）。两支团队各自专注、协同服务，但保持独立的工作方式与联系渠道。
 		</p>
 	</section>
 
+	<section class="mx-auto max-w-3xl py-6 px-6">
+		<div class="grid gap-6 sm:grid-cols-2">
+			<a href="/courses" class="rounded-2xl border border-line bg-paper p-6 transition-colors hover:border-accent">
+				<p class="text-sm font-medium uppercase tracking-wide text-accent">课程辅导</p>
+				<p class="mt-2 text-sm leading-relaxed text-ink-soft">
+					1v1课业辅导、录播课程、考前冲刺，由张博主讲，详见
+					<span class="text-accent">师资力量</span> 页面。
+				</p>
+			</a>
+			<a href="/programs" class="rounded-2xl border border-line bg-paper p-6 transition-colors hover:border-accent">
+				<p class="text-sm font-medium uppercase tracking-wide text-accent">陪跑与咨询</p>
+				<p class="mt-2 text-sm leading-relaxed text-ink-soft">
+					长期陪跑、按需咨询与 Predoc/PhD 申请规划，团队以角色而非姓名介绍分工。
+				</p>
+			</a>
+		</div>
+	</section>
+
+	<!-- 过来人叙事 -->
 	<section class="mx-auto max-w-3xl px-6 py-10">
-		<h2 class="text-2xl font-semibold text-ink">我们的方法论</h2>
-		<div class="mt-6 space-y-6 text-base leading-relaxed text-ink-soft">
+		<h2 class="text-2xl font-semibold text-ink">为什么我们做这件事</h2>
+		<div class="mt-6 space-y-5 text-base leading-relaxed text-ink-soft">
 			<p>
-				PI 招募 Predoc 的逻辑和招生委员会评估 PhD 申请者的逻辑并不相同：PI 关心短期能力和长期声誉回报，委员会关心长期研究潜力。混淆这两套逻辑，是大多数申请材料失效的根本原因。我们的每一条建议都对应一条可追溯的决策规则，而不是泛泛的经验之谈。
+				我们自己走过这条路——从国内本科到北美学术圈，经历过套磁被已读不回、不清楚推荐信网络权重怎么算、不知道 Predoc 和 PhD 申请逻辑有多大差异这些真实的困惑。当时最缺的不是鼓励，而是有人能清晰地把评估逻辑讲明白——招募方真正在看什么、哪些材料信号是有效的、哪些是在浪费精力。
 			</p>
 			<p>
-				我们也相信，好的规划应该经得起时间和反馈的检验。每一次咨询都会留下明确的产出——诊断报告、目标清单、材料草稿、面试复盘——而不是一次性的口头建议。
+				从内部视角看过 Predoc 和 PhD 的招募流程之后，我们意识到：大多数申请者的困境不是背景不够强，而是不知道评估方用什么维度在看他们。这个信息不对称是可以填补的，而填补它所需要的，是真实的一线观察，而不是泛泛的"经验之谈"。
+			</p>
+			<p>
+				Best Studio 是我们填补这个信息差的方式。我们不打算做成一个大机构，而是希望每一次咨询都能给学生留下明确的产出——诊断报告、目标清单、材料草稿、面试复盘——而不是一次性的口头建议。
 			</p>
 		</div>
 	</section>
 
+	<!-- 内行洞察：让读者自己得出"这值得信任"的结论 -->
+	<section class="mx-auto max-w-3xl px-6 py-10">
+		<h2 class="text-2xl font-semibold text-ink">三个学生最常搞错的判断</h2>
+		<p class="mt-3 text-sm text-ink-soft">
+			如果下面的分析让你觉得"这不是我在网上能随便搜到的答案"，那正是我们想传递的：我们给出的建议是基于对评审逻辑的真实理解，而不是从申请攻略里提炼的经验。
+		</p>
+		<div class="mt-8 space-y-8">
+			{
+				insights.map((insight) => (
+					<div class="rounded-2xl border border-line bg-paper p-7">
+						<h3 class="text-base font-semibold text-ink">{insight.question}</h3>
+						<p class="mt-3 text-sm leading-relaxed text-ink-soft">{insight.answer}</p>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<!-- 主理团队：匿名但专业可信 -->
+	<section class="mx-auto max-w-3xl px-6 py-10">
+		<h2 class="text-2xl font-semibold text-ink">主理团队</h2>
+		<p class="mt-3 text-sm text-ink-soft">
+			我们以角色而非姓名介绍团队分工——这既保护了正在进行研究工作的团队成员，也保护了每一位学生的咨询隐私。你认识的是这套方法论的声音，而不是某一张脸。
+		</p>
+		<div class="mt-6 grid gap-6 sm:grid-cols-3">
+			{
+				team.map((member) => (
+					<div class="rounded-2xl border border-line bg-paper p-6">
+						<p class="text-sm font-medium uppercase tracking-wide text-accent">{member.role}</p>
+						<p class="mt-3 text-sm leading-relaxed text-ink-soft">{member.description}</p>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<!-- 我们的方法论框架 -->
+	<section class="mx-auto max-w-3xl px-6 py-10">
+		<h2 class="text-2xl font-semibold text-ink">我们的诊断框架</h2>
+		<div class="mt-6 space-y-5 text-base leading-relaxed text-ink-soft">
+			<p>
+				我们内部有一套结构化的申请诊断框架，把每次咨询拆解成四个有明确产出的阶段：<strong class="text-ink">背景诊断</strong>（识别最强资产与最关键缺口）→ <strong class="text-ink">路径分层</strong>（基于诊断结果判断冲刺/合适/保底三档）→ <strong class="text-ink">材料定制</strong>（针对具体 PI 和项目重写，而不是套模板）→ <strong class="text-ink">模拟复盘</strong>（在真实压力下暴露答题模式，提前修正红线回答）。
+			</p>
+			<p>
+				这套框架的核心假设只有一条：PI 招募 Predoc 的逻辑和招生委员会评估 PhD 申请者的逻辑是不同的。把这两套逻辑混用——比如用 PhD SOP 的写法写 Predoc Cover Letter——是材料失效最常见的根本原因。
+			</p>
+		</div>
+	</section>
+
+	<!-- 我们相信 -->
 	<section class="mx-auto max-w-3xl px-6 py-10">
 		<h2 class="text-2xl font-semibold text-ink">我们相信</h2>
 		<ul class="mt-6 space-y-4 text-base leading-relaxed text-ink-soft">
-			<li><strong class="text-ink">定制化 &gt; 申请量。</strong>高度定制的少量申请，效果远好于大量通用申请。</li>
-			<li><strong class="text-ink">诚实 &gt; 包装。</strong>识别背景差距并给出可信的学习计划，比假装没有差距更有说服力。</li>
-			<li><strong class="text-ink">证据 &gt; 直觉。</strong>路径选择应该基于推荐信网络、研究经历真实程度和签证时间线等可验证因素。</li>
+			<li>
+				<strong class="text-ink">定制化 &gt; 申请量。</strong>
+				高度定制的少量申请，效果远好于大量通用申请。投递量不是解决低回复率的答案。
+			</li>
+			<li>
+				<strong class="text-ink">诚实 &gt; 包装。</strong>
+				识别背景差距并给出可信的学习计划，比假装没有差距更有说服力——因为 PI 和委员会都看得出来。
+			</li>
+			<li>
+				<strong class="text-ink">证据 &gt; 直觉。</strong>
+				路径选择应该基于推荐信网络、研究经历真实程度和签证时间线等可验证因素，而不是"感觉可以试试"。
+			</li>
+			<li>
+				<strong class="text-ink">资产积累 &gt; 材料打磨。</strong>
+				如果根本缺口是资产（没有真实 PI 合作记录、推荐信网络位置差），优化材料措辞的边际收益极低——正确的答案是先补资产。
+			</li>
 		</ul>
+	</section>
+
+	<!-- 跨平台声音一致性：知乎入口 -->
+	<section class="mx-auto max-w-3xl px-6 py-10">
+		{
+			ZHIHU_URL ? (
+				<a
+					href={ZHIHU_URL}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="flex items-center justify-between gap-6 rounded-2xl border border-line bg-paper-raised p-7 transition-colors hover:border-accent"
+				>
+					<div>
+						<p class="text-sm font-medium uppercase tracking-wide text-accent">知乎专栏</p>
+						<p class="mt-2 text-base text-ink">
+							想确认这套方法论不是"自说自话"？我们在知乎持续发布公开分析——你在这里读到的声音，和知乎上写的是同一套逻辑、同一个人。
+						</p>
+					</div>
+					<span class="shrink-0 text-sm font-medium text-accent">阅读知乎 &rarr;</span>
+				</a>
+			) : (
+				<div class="rounded-2xl border border-line bg-paper-raised p-7">
+					<p class="text-sm font-medium uppercase tracking-wide text-accent">内容平台</p>
+					<p class="mt-2 text-base text-ink-soft">
+						我们在知乎、小红书同步发布 Predoc / PhD 申请的长文分析——你在这里读到的声音，和平台上写的是同一套逻辑。
+					</p>
+				</div>
+			)
+		}
 	</section>
 
 	<CTA
 		heading="想了解我们能为你提供什么？"
-		body="预约一次咨询，我们会先做背景诊断，再给出具体建议。"
+		body="预约一次咨询，我们会先做背景诊断，再给出具体建议——不是泛泛的"加油"，而是一份可执行的优先级清单。"
 		buttonLabel="预约咨询"
 		buttonHref="/book-a-call"
 	/>

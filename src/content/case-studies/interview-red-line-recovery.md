@@ -1,5 +1,6 @@
 ---
 order: 4
+track: predoc
 title: 面试红线回答的当场修复
 summary: 已经说出暴露"AI 主导"信号的回答后，下一步不是否认，而是用具体技术细节自然覆盖。
 background: |

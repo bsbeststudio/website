@@ -1,0 +1,211 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CTA from '../components/CTA.astro';
+import { ZHIHU_URL, WECHAT_ACCOUNT, CONTACT_EMAIL, DIAGNOSTIC_MAILTO } from '../consts';
+
+const title = '知识库';
+const description =
+	'按阶段整理的学术早期职业规划资源：本科科研、RA/Predoc、PhD 申请与 PhD 早期适应。';
+
+const stages = [
+	{
+		stage: '本科科研',
+		tag: '打基础',
+		items: [
+			{
+				title: '课程项目和真实研究经历的差距：为什么 PI 在意的不是工作量',
+				href: '/case-studies/coursework-only-research-experience',
+				type: 'internal',
+				summary: '独立完成的 term paper 与真实 PI 合作的核心差异——权重不在工作量，在于监督结构与推荐信可信度。',
+			},
+			{
+				title: 'Predoc 申请准备：如何获取第一段真实 RA 机会',
+				href: '/services/predoc-mentoring',
+				type: 'internal',
+				summary: '从冷邮件策略到面谈准备，如何在没有 PI 合作记录的情况下找到起点。',
+			},
+		],
+	},
+	{
+		stage: 'RA / Predoc',
+		tag: '信号积累',
+		items: [
+			{
+				title: 'Predoc 申请整体策略：材料定制化而非广撒网',
+				href: '/services/predoc-mentoring',
+				type: 'internal',
+				summary: '为什么回复率低的根本原因是材料没有针对具体 PI 定制，而不是背景不够强。',
+			},
+			{
+				title: '推荐信网络位置：国内机构推荐信为什么"打折"',
+				href: ZHIHU_URL || '/about',
+				type: ZHIHU_URL ? 'external' : 'internal',
+				summary:
+					'推荐信权重不只取决于写信人的热情，还取决于其在北美学术圈的网络节点位置——信息验证成本的差异。',
+			},
+			{
+				title: '推荐信网络受限时的路径选择',
+				href: '/case-studies/domestic-recommenders-predoc-first',
+				type: 'internal',
+				summary: '推荐信全部来自国内机构时，如何判断直申 PhD 还是先做 Predoc 过渡——案例拆解。',
+			},
+			{
+				title: 'Predoc 面试：技术追问与红线回答识别',
+				href: '/services/interview-coaching',
+				type: 'internal',
+				summary: '面试中最常出现的红线回答模式，以及如何在模拟练习中提前发现并修正。',
+			},
+		],
+	},
+	{
+		stage: 'PhD 申请',
+		tag: '路径决策',
+		items: [
+			{
+				title: '我需要 Predoc 吗？直申 vs 过渡路径的判断框架',
+				href: '/faq',
+				type: 'internal',
+				summary: '不是所有人都需要 Predoc。判断的核心维度是推荐信网络位置和研究经历的真实程度。',
+			},
+			{
+				title: 'PhD 申请规划：用委员会真正看的维度来准备',
+				href: '/services/phd-application',
+				type: 'internal',
+				summary: '招生委员会评估的三个核心信号：推荐信网络位置、研究经历真实程度、研究兴趣具体程度。',
+			},
+			{
+				title: 'OPT 时间线约束下的申请节奏',
+				href: '/case-studies/opt-timeline-constraint',
+				type: 'internal',
+				summary: '签证时间线对申请季节奏构成硬约束时，如何调整投递策略和路径选择。',
+			},
+			{
+				title: 'CV 长度与研究经历呈现方式',
+				href: '/services/cv-review',
+				type: 'internal',
+				summary: 'PhD 申请 CV 的核心不是呈现工作量，而是让评审人在最短时间内定位你的研究能力。',
+			},
+		],
+	},
+	{
+		stage: 'PhD 早期适应',
+		tag: '入读之后',
+		items: [
+			{
+				title: '多个 Offer 之间怎么选：导师风格、科研环境与签证约束',
+				href: '/faq',
+				type: 'internal',
+				summary: '选择 PhD 项目的核心不是排名，而是导师的 mentorship 风格和科研环境是否匹配你的工作方式。',
+			},
+			{
+				title: '研究主线与阶段性优先级：避免科研资源分散',
+				href: '/services/research-career-planning',
+				type: 'internal',
+				summary: '进入 PhD 阶段后如何建立清晰的研究主线，避免"什么都做了一点、什么都不够深"的陷阱。',
+			},
+		],
+	},
+];
+---
+
+<Layout title={title} description={description}>
+	<section class="mx-auto max-w-3xl px-6 pb-8 pt-20 md:pt-28">
+		<p class="text-sm font-medium uppercase tracking-wide text-accent">Resources</p>
+		<h1 class="mt-4 text-4xl font-semibold leading-tight tracking-tight text-ink md:text-5xl">知识库</h1>
+		<p class="mt-6 text-lg leading-relaxed text-ink-soft">
+			按阶段整理的规划资源，帮助你先厘清当前所处的位置，再决定下一步该做什么。站内资源与知乎长文使用同一套框架，可以交叉阅读。
+		</p>
+	</section>
+
+	<!-- Lead magnet：获取 Predoc 时间线 PDF -->
+	<section class="mx-auto max-w-3xl px-6 pb-8">
+		<div class="rounded-2xl border border-accent/30 bg-accent-soft p-7">
+			<p class="text-xs font-medium uppercase tracking-wide text-accent">免费资源</p>
+			<h2 class="mt-2 text-xl font-semibold text-ink">Predoc 申请时间线 PDF</h2>
+			<p class="mt-3 text-sm leading-relaxed text-ink-soft">
+				整理了北美 Predoc 岗位的发布规律（春季 3–5 月、秋季 9–11 月高峰）、各阶段准备节点，以及签证时间线与申请节奏的交叉约束图。适合还在判断"我现在该做什么"的同学作为初步参照。
+			</p>
+			<div class="mt-5 flex flex-wrap items-center gap-3">
+				<a
+					href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('获取 Predoc 时间线 PDF')}&body=${encodeURIComponent('您好，我想获取 Predoc 申请时间线 PDF。\n\n我的情况：\n年级/专业：\n目标方向：\n')}`}
+					class="rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-paper transition-colors hover:bg-accent"
+				>
+					邮件获取（免费）
+				</a>
+				<span class="text-sm text-ink-soft">或微信公众号发送「时间线」</span>
+			</div>
+		</div>
+	</section>
+
+	<!-- 知乎专栏入口 -->
+	{
+		ZHIHU_URL && (
+			<section class="mx-auto max-w-3xl px-6 pb-8">
+				<a
+					href={ZHIHU_URL}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="flex items-center justify-between gap-4 rounded-2xl border border-line bg-paper-raised p-6 transition-colors hover:border-accent"
+				>
+					<div>
+						<p class="text-xs font-medium uppercase tracking-wide text-accent">知乎专栏</p>
+						<p class="mt-1 text-base text-ink">
+							我们持续在知乎分享 Predoc / PhD 申请的长文分析——你在这里读到的框架，和知乎文章是同一套逻辑、同一个声音。
+						</p>
+					</div>
+					<span class="shrink-0 text-sm font-medium text-accent">前往知乎 &rarr;</span>
+				</a>
+			</section>
+		)
+	}
+
+	<!-- 按阶段整理的资源列表 -->
+	<section class="mx-auto max-w-3xl px-6 pb-16 space-y-12">
+		{
+			stages.map((s) => (
+				<div>
+					<div class="flex items-center gap-3">
+						<h2 class="text-xl font-semibold text-ink">{s.stage}</h2>
+						<span class="rounded-full bg-accent-soft px-3 py-0.5 text-xs font-medium text-accent">
+							{s.tag}
+						</span>
+					</div>
+					<ul class="mt-4 divide-y divide-line border-y border-line">
+						{s.items.map((item) => (
+							<li>
+								{item.type === 'external' ? (
+									<a
+										href={item.href}
+										target="_blank"
+										rel="noopener noreferrer"
+										class="group flex flex-col gap-1.5 py-4"
+									>
+										<span class="flex items-center gap-2 text-sm font-medium text-ink group-hover:text-accent">
+											{item.title}
+											<span class="text-xs text-ink-soft">↗</span>
+										</span>
+										<span class="text-xs leading-relaxed text-ink-soft">{item.summary}</span>
+									</a>
+								) : (
+									<a href={item.href} class="group flex flex-col gap-1.5 py-4">
+										<span class="text-sm font-medium text-ink group-hover:text-accent">
+											{item.title}
+										</span>
+										<span class="text-xs leading-relaxed text-ink-soft">{item.summary}</span>
+									</a>
+								)}
+							</li>
+						))}
+					</ul>
+				</div>
+			))
+		}
+	</section>
+
+	<CTA
+		heading="想获取更完整的时间线规划？"
+		body="预约一次背景诊断，我们会基于你的具体阶段给出可执行的优先级清单，而不是通用建议。"
+		buttonLabel="预约咨询"
+		buttonHref="/book-a-call"
+	/>
+</Layout>

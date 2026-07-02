@@ -1,0 +1,44 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const title = '案例';
+const description = '课程辅导反馈与申请案例——两类内容物理分区展示，互不混排。';
+---
+
+<Layout title={title} description={description}>
+	<section class="mx-auto max-w-3xl px-6 pb-12 pt-20 md:pt-28">
+		<p class="text-sm font-medium uppercase tracking-wide text-accent">Cases</p>
+		<h1 class="mt-4 text-4xl font-semibold leading-tight tracking-tight text-ink md:text-5xl">案例</h1>
+		<p class="mt-6 text-lg leading-relaxed text-ink-soft">
+			请选择你想了解的案例类型——课程辅导反馈与申请案例分别在两个独立页面展示。
+		</p>
+	</section>
+
+	<section class="mx-auto max-w-4xl px-6 pb-20">
+		<div class="grid gap-6 sm:grid-cols-2">
+			<a
+				href="/cases/tutoring"
+				class="group flex flex-col gap-3 rounded-2xl border border-line bg-paper p-8 transition-colors hover:border-accent"
+			>
+				<p class="text-sm font-medium uppercase tracking-wide text-accent">课程辅导</p>
+				<h2 class="text-lg font-semibold text-ink">课程辅导反馈</h2>
+				<p class="text-sm leading-relaxed text-ink-soft">来自 1v1课业辅导、录播课程学生的真实反馈。</p>
+				<span class="mt-auto text-sm font-medium text-accent opacity-0 transition-opacity group-hover:opacity-100">
+					查看反馈 &rarr;
+				</span>
+			</a>
+
+			<a
+				href="/cases/applications"
+				class="group flex flex-col gap-3 rounded-2xl border border-line bg-paper p-8 transition-colors hover:border-accent"
+			>
+				<p class="text-sm font-medium uppercase tracking-wide text-accent">申请规划</p>
+				<h2 class="text-lg font-semibold text-ink">申请案例</h2>
+				<p class="text-sm leading-relaxed text-ink-soft">匿名化的复合场景，说明典型问题的诊断与应对方式。</p>
+				<span class="mt-auto text-sm font-medium text-accent opacity-0 transition-opacity group-hover:opacity-100">
+					查看案例 &rarr;
+				</span>
+			</a>
+		</div>
+	</section>
+</Layout>

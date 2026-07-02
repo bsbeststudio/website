@@ -1,0 +1,52 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CTA from '../../components/CTA.astro';
+
+const title = '咨询';
+const description = '按小时付费的 office hours 咨询，适合有具体问题需要快速诊断的学生。';
+
+const scenarios = [
+	'选校判断：帮你评估某个具体项目/岗位是否值得投入',
+	'推荐人网络分析：判断某位推荐人的信件权重和网络位置',
+	'单次材料 review：针对已有 CV / Cover Letter / SOP 给出具体修改建议',
+	'某个具体决策的快速诊断：例如是否要接受某个 offer、要不要调整研究方向',
+];
+---
+
+<Layout title={title} description={description}>
+	<section class="mx-auto max-w-3xl px-6 pb-12 pt-20 md:pt-28">
+		<p class="text-sm font-medium uppercase tracking-wide text-accent">Programs · 咨询</p>
+		<h1 class="mt-4 text-4xl font-semibold leading-tight tracking-tight text-ink md:text-5xl">咨询</h1>
+		<p class="mt-6 text-lg leading-relaxed text-ink-soft">
+			按小时付费的 office hours，适合有具体问题需要快速诊断、暂时不需要长期陪跑的学生。与"陪跑"的区别是：咨询针对单次/按需的具体问题，不覆盖整个规划周期。
+		</p>
+	</section>
+
+	<section class="mx-auto max-w-3xl px-6 py-8">
+		<h2 class="text-2xl font-semibold text-ink">适合的场景</h2>
+		<ul class="mt-4 space-y-3 text-base leading-relaxed text-ink-soft">
+			{
+				scenarios.map((s) => (
+					<li class="flex gap-3">
+						<span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+						<span>{s}</span>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+
+	<section class="mx-auto max-w-3xl px-6 py-8">
+		<h2 class="text-2xl font-semibold text-ink">如何进行</h2>
+		<p class="mt-4 text-base leading-relaxed text-ink-soft">
+			联系我们后，先简要说明你的具体问题，我们会确认这个问题是否适合单次咨询解决，或者建议你从"陪跑"服务开始。时长和费用根据具体问题的复杂程度个性化定制。
+		</p>
+	</section>
+
+	<CTA
+		heading="有具体问题需要快速诊断？"
+		body="告诉我们你的问题，我们会确认是否适合单次咨询。"
+		buttonLabel="预约咨询"
+		buttonHref="/contact"
+	/>
+</Layout>

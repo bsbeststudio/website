@@ -1,5 +1,6 @@
 ---
 order: 2
+track: predoc
 title: 课程项目误当研究经历：优先级重排
 summary: 研究经历全部是独立课程项目、没有真实 PI 合作记录时，获取一次哪怕无薪的 RA 机会，比打磨申请材料更重要。
 background: |

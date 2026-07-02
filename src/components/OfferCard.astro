@@ -1,0 +1,25 @@
+---
+interface Props {
+	schoolTier: string;
+	backgroundTag: string;
+	timeline: string;
+	insight: string;
+	caseStudyHref?: string;
+}
+
+const { schoolTier, backgroundTag, timeline, insight, caseStudyHref } = Astro.props;
+---
+
+<div class="flex flex-col gap-3 rounded-2xl border border-line bg-paper p-6">
+	<p class="text-base font-semibold text-ink">{schoolTier}</p>
+	<p class="text-sm text-ink-soft">{backgroundTag}</p>
+	<p class="text-xs font-medium uppercase tracking-wide text-accent">{timeline}</p>
+	<p class="mt-1 text-sm leading-relaxed text-ink-soft">{insight}</p>
+	{
+		caseStudyHref && (
+			<a href={caseStudyHref} class="mt-auto pt-2 text-sm font-medium text-accent hover:underline">
+				查看完整案例 &rarr;
+			</a>
+		)
+	}
+</div>

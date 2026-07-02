@@ -1,0 +1,61 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CTA from '../../components/CTA.astro';
+
+const title = 'Predoc / PhD 申请规划';
+const description = '硕博 Predoc/PhD 申请规划服务概览——完整内容见服务详情页。';
+
+const highlights = [
+	'基于 PI 招募逻辑与招生委员会评估维度的背景诊断',
+	'Predoc / PhD 路径决策，以及目标院校与岗位的分层建议',
+	'研究主线构建与材料定制（Cover Letter / CV / SOP）',
+	'模拟面试与红线回答复盘',
+];
+---
+
+<Layout title={title} description={description}>
+	<section class="mx-auto max-w-3xl px-6 pb-12 pt-20 md:pt-28">
+		<p class="text-sm font-medium uppercase tracking-wide text-accent">Programs · Predoc / PhD</p>
+		<h1 class="mt-4 text-4xl font-semibold leading-tight tracking-tight text-ink md:text-5xl">
+			Predoc / PhD 申请规划
+		</h1>
+		<p class="mt-6 text-lg leading-relaxed text-ink-soft">
+			面向研究导向学生的学术早期职业规划——Predoc 申请、PhD 申请、研究职业路径选择。基于真实招募逻辑与决策框架，而不是泛泛的申请攻略。
+		</p>
+	</section>
+
+	<section class="mx-auto max-w-3xl px-6 py-8">
+		<h2 class="text-2xl font-semibold text-ink">服务亮点</h2>
+		<ul class="mt-4 space-y-3 text-base leading-relaxed text-ink-soft">
+			{
+				highlights.map((h) => (
+					<li class="flex gap-3">
+						<span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+						<span>{h}</span>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+
+	<section class="mx-auto max-w-3xl px-6 py-10">
+		<div class="rounded-2xl border border-line bg-paper-raised p-8 text-center">
+			<p class="text-base text-ink-soft">
+				完整的服务详情、Offer 墙、案例与方法论内容，见我们的申请规划专区。
+			</p>
+			<a
+				href="/services"
+				class="mt-5 inline-block rounded-full bg-ink px-6 py-3 text-sm font-medium text-paper transition-colors hover:bg-accent"
+			>
+				查看完整申请规划服务 &rarr;
+			</a>
+		</div>
+	</section>
+
+	<CTA
+		heading="想知道自己适合哪条路径？"
+		body="预约一次背景诊断，获得针对你具体情况的分析。"
+		buttonLabel="预约咨询"
+		buttonHref="/contact"
+	/>
+</Layout>

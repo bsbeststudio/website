@@ -4,11 +4,58 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import Timeline from '../components/Timeline.astro';
+import OfferCard from '../components/OfferCard.astro';
 import CTA from '../components/CTA.astro';
 import FaqAccordion from '../components/FaqAccordion.astro';
-import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from '../consts';
+import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL, TUTORING_MAILTO, ZHIHU_URL } from '../consts';
+
+const tutoringItems = [
+	{
+		title: '1v1课业辅导',
+		tagline: '选课指导、课业规划、双语培优、作业辅导，一对一跟进',
+		href: '/courses/tutoring',
+		icon: 'compass' as const,
+	},
+	{
+		title: '录播课程',
+		tagline: '高微、高计、高宏、递归宏观、中级计量，五门系统课程',
+		href: '/courses/recorded',
+		icon: 'document' as const,
+	},
+	{
+		title: '考前冲刺',
+		tagline: 'GRE/GMAT定量、qualifying exam、技术面试摸底',
+		href: '/courses/exam-prep',
+		icon: 'chart' as const,
+	},
+];
+
+const programItems = [
+	{
+		title: '陪跑',
+		tagline: '跨阶段长期陪伴，适合起步早、需要持续节点把控的学生',
+		href: '/programs/mentorship',
+		icon: 'chart' as const,
+	},
+	{
+		title: '咨询',
+		tagline: '按小时付费的 office hours，适合有具体问题需要快速诊断',
+		href: '/programs/consulting',
+		icon: 'chat' as const,
+	},
+	{
+		title: 'Predoc / PhD 申请规划',
+		tagline: '从背景诊断到材料定制的完整申请规划服务',
+		href: '/programs/predoc',
+		icon: 'academic' as const,
+	},
+];
+
+const tutoringSchools = ['芝加哥大学', '哥伦比亚大学', '约翰霍普金斯大学'];
 
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+
+const offers = (await getCollection('offers')).sort((a, b) => a.data.order - b.data.order).slice(0, 4);
 
 const caseStudies = (await getCollection('case-studies'))
 	.sort((a, b) => a.data.order - b.data.order)
@@ -18,6 +65,13 @@ const homeFaqs = (await getCollection('faqs'))
 	.filter((f) => f.data.showOnHome)
 	.sort((a, b) => a.data.order - b.data.order)
 	.map((f) => ({ question: f.data.question, answer: f.data.answer }));
+
+const stats = [
+	{ value: '6', label: '业务线：课业辅导 + 学术生涯规划' },
+	{ value: '5', label: '门系统性录播课程' },
+	{ value: '全流程', label: '从背景诊断到 Offer 决策' },
+	{ value: '知乎', label: '同一账号持续输出方法论' },
+];
 
 const processSteps = [
 	{ title: '背景诊断', description: '梳理 CV、成绩单、推荐信网络位置和技能栈，识别当前最强资产和最关键缺口。' },
@@ -40,14 +94,68 @@ const professionalServiceSchema = {
 <Layout title={SITE_TITLE} description={SITE_DESCRIPTION} structuredData={professionalServiceSchema}>
 	<Hero
 		eyebrow="Best Studio"
-		title="学术早期职业决策，值得用证据而不是直觉来做"
-		subtitle="我们为研究导向的学生提供 Predoc、PhD 申请与学术职业规划的一对一咨询，基于真实的招募逻辑与决策框架，帮助你在每个关键节点做出经得起验证的选择。"
-		primaryCta={{ label: '预约咨询', href: '/book-a-call' }}
-		secondaryCta={{ label: '查看服务', href: '/services' }}
+		title="从课业提升到学术生涯决策，全周期支持"
+		subtitle="我们覆盖本硕博阶段的课业辅导（1v1辅导、录播课程、考前冲刺）与学术生涯规划（陪跑、咨询、Predoc/PhD 申请规划），基于真实的教学与招募逻辑，帮助你在每个关键节点做出经得起验证的选择。"
+		primaryCta={{ label: '联系我们', href: '/contact' }}
+		secondaryCta={{ label: '查看全部服务', href: '/courses' }}
 	/>
+
+	<section class="mx-auto max-w-6xl px-6 pb-16">
+		<div class="grid gap-8 border-y border-line py-10 sm:grid-cols-2 lg:grid-cols-4">
+			{
+				stats.map((stat) => (
+					<div>
+						<p class="text-2xl font-semibold text-ink">{stat.value}</p>
+						<p class="mt-1 text-sm text-ink-soft">{stat.label}</p>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="mx-auto max-w-6xl px-6 py-16">
+		<h2 class="text-2xl font-semibold text-ink md:text-3xl">六项业务，两条独立团队</h2>
+		<p class="mt-3 max-w-2xl text-sm text-ink-soft">
+			课业提升与学术生涯规划由两支独立团队负责，服务内容和联系方式分开管理。
+		</p>
+
+		<div class="mt-8">
+			<p class="text-sm font-medium uppercase tracking-wide text-accent">课业提升 · 张博主讲</p>
+			<div class="mt-4 grid gap-6 sm:grid-cols-3">
+				{tutoringItems.map((item) => <ServiceCard {...item} />)}
+			</div>
+		</div>
+
+		<div class="my-10 border-t border-line" />
+
+		<div>
+			<p class="text-sm font-medium uppercase tracking-wide text-accent">学术生涯规划</p>
+			<div class="mt-4 grid gap-6 sm:grid-cols-3">
+				{programItems.map((item) => <ServiceCard {...item} />)}
+			</div>
+		</div>
+	</section>
+
+	<section class="mx-auto max-w-6xl px-6 py-16">
+		<h2 class="text-2xl font-semibold text-ink md:text-3xl">课程辅导学生去向</h2>
+		<p class="mt-3 max-w-2xl text-sm text-ink-soft">
+			课程辅导学生（部分代表性院校，非完整名单）：
+		</p>
+		<div class="mt-6 flex flex-wrap gap-3">
+			{
+				tutoringSchools.map((school) => (
+					<span class="rounded-full border border-line bg-paper px-4 py-2 text-sm text-ink-soft">{school}</span>
+				))
+			}
+		</div>
+		<a href={TUTORING_MAILTO} class="mt-6 inline-block text-sm font-medium text-accent hover:underline">
+			联系课程辅导小助手 &rarr;
+		</a>
+	</section>
 
 	<section class="mx-auto max-w-6xl px-6 py-16">
 		<h2 class="text-2xl font-semibold text-ink md:text-3xl">我们能帮到谁</h2>
+		<p class="mt-3 max-w-2xl text-sm text-ink-soft">以下聚焦学术生涯规划团队的服务对象——课程辅导详情见上方业务矩阵。</p>
 		<div class="mt-8 grid gap-8 md:grid-cols-3">
 			<div>
 				<p class="text-sm font-medium uppercase tracking-wide text-accent">本科 / 硕士在读</p>
@@ -72,7 +180,7 @@ const professionalServiceSchema = {
 
 	<section class="mx-auto max-w-6xl px-6 py-16">
 		<div class="flex items-baseline justify-between">
-			<h2 class="text-2xl font-semibold text-ink md:text-3xl">服务</h2>
+			<h2 class="text-2xl font-semibold text-ink md:text-3xl">Predoc / PhD 申请规划服务详情</h2>
 			<a href="/services" class="text-sm font-medium text-accent hover:underline">查看全部 &rarr;</a>
 		</div>
 		<div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -90,6 +198,29 @@ const professionalServiceSchema = {
 	</section>
 
 	<section class="mx-auto max-w-6xl px-6 py-16">
+		<div class="flex items-baseline justify-between">
+			<h2 class="text-2xl font-semibold text-ink md:text-3xl">Offer 墙</h2>
+			<a href="/offers" class="text-sm font-medium text-accent hover:underline">查看全部 &rarr;</a>
+		</div>
+		<p class="mt-3 max-w-2xl text-sm text-ink-soft">
+			以下为匿名化的复合场景，按背景类型分类展示，说明路径是否可复制，而不只是院校 logo 的堆砌。
+		</p>
+		<div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+			{
+				offers.map((offer) => (
+					<OfferCard
+						schoolTier={offer.data.schoolTier}
+						backgroundTag={offer.data.backgroundTag}
+						timeline={offer.data.timeline}
+						insight={offer.data.insight}
+						caseStudyHref={offer.data.caseStudySlug ? `/case-studies/${offer.data.caseStudySlug}` : undefined}
+					/>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="mx-auto max-w-6xl px-6 py-16">
 		<h2 class="text-2xl font-semibold text-ink md:text-3xl">我们的流程</h2>
 		<p class="mt-3 max-w-2xl text-sm text-ink-soft">
 			咨询是一个多步骤的持续工作流，每一步的产出都是下一步的输入。
@@ -100,12 +231,30 @@ const professionalServiceSchema = {
 	</section>
 
 	<section class="mx-auto max-w-6xl px-6 py-16">
+		<h2 class="text-2xl font-semibold text-ink md:text-3xl">内容精选</h2>
+		<a
+			href={ZHIHU_URL}
+			target="_blank"
+			rel="noopener noreferrer"
+			class="mt-6 flex flex-col gap-4 rounded-2xl border border-line bg-paper-raised p-8 transition-colors hover:border-accent sm:flex-row sm:items-center sm:justify-between"
+		>
+			<div>
+				<p class="text-sm font-medium uppercase tracking-wide text-accent">知乎专栏</p>
+				<p class="mt-2 max-w-xl text-base text-ink">
+					我们持续在知乎分享 Predoc / PhD 申请的长文分析——你在这里读到的方法论，和我们在知乎上写的是同一套逻辑、同一个声音。
+				</p>
+			</div>
+			<span class="shrink-0 text-sm font-medium text-accent">前往知乎主页 &rarr;</span>
+		</a>
+	</section>
+
+	<section class="mx-auto max-w-6xl px-6 py-16">
 		<div class="flex items-baseline justify-between">
-			<h2 class="text-2xl font-semibold text-ink md:text-3xl">案例</h2>
+			<h2 class="text-2xl font-semibold text-ink md:text-3xl">深度案例</h2>
 			<a href="/case-studies" class="text-sm font-medium text-accent hover:underline">查看全部 &rarr;</a>
 		</div>
 		<p class="mt-3 max-w-2xl text-sm text-ink-soft">
-			以下案例为匿名化的复合场景，基于真实咨询模式整理，用于说明典型问题与应对方式。
+			比 Offer 墙更完整的叙事版本：背景、问题、诊断、方案、结果的全过程拆解。
 		</p>
 		<div class="mt-8 grid gap-6 md:grid-cols-3">
 			{
@@ -134,7 +283,7 @@ const professionalServiceSchema = {
 
 	<CTA
 		heading="想清楚下一步该做什么？"
-		body="先做一次背景诊断，我们会给你一个有据可查的路径建议。"
+		body="先做一次背景诊断，通过微信公众号联系我们，会给你一个有据可查的路径建议。"
 		buttonLabel="预约咨询"
 		buttonHref="/book-a-call"
 	/>

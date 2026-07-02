@@ -1,5 +1,6 @@
 ---
 order: 1
+track: predoc
 title: 推荐信网络受限：从直申 PhD 转向 Predoc 过渡
 summary: 推荐信全部来自国内机构时，直申北美顶级 PhD 的成功率系统性偏低——问题不在背景，而在网络位置。
 background: |

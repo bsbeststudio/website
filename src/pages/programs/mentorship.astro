@@ -1,0 +1,51 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Timeline from '../../components/Timeline.astro';
+import CTA from '../../components/CTA.astro';
+
+const title = '陪跑';
+const description = '跨阶段长期陪伴的学术生涯规划服务，适合起步早、需要持续节点把控的学生。';
+
+const process = [
+	{ title: '背景诊断', description: '梳理当前资产与关键缺口，确定长期规划的起点。' },
+	{ title: '阶段性目标设定', description: '按学期/申请季划分节点，明确每个阶段的具体产出。' },
+	{ title: '持续跟踪', description: '定期回顾进展，根据新增经历或反馈及时调整路径。' },
+	{ title: '关键节点冲刺', description: '在材料定制、模拟面试等关键节点上加密沟通频率。' },
+];
+---
+
+<Layout title={title} description={description}>
+	<section class="mx-auto max-w-3xl px-6 pb-12 pt-20 md:pt-28">
+		<p class="text-sm font-medium uppercase tracking-wide text-accent">Programs · 陪跑</p>
+		<h1 class="mt-4 text-4xl font-semibold leading-tight tracking-tight text-ink md:text-5xl">陪跑</h1>
+		<p class="mt-6 text-lg leading-relaxed text-ink-soft">
+			全程周期性跟踪的长期陪伴服务，适合起步较早、需要在多个学期或申请季之间持续把控节点的学生。与"咨询"的区别是：陪跑覆盖整个规划周期，咨询针对单次具体问题。
+		</p>
+	</section>
+
+	<section class="mx-auto max-w-3xl px-6 py-8">
+		<h2 class="text-2xl font-semibold text-ink">适合谁</h2>
+		<ul class="mt-4 space-y-3 text-base leading-relaxed text-ink-soft">
+			<li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" /><span>希望在申请季开始前 1-2 年就启动系统性规划的学生</span></li>
+			<li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" /><span>需要在多个阶段性节点（选课、RA 申请、材料准备、面试）之间保持连续跟踪的学生</span></li>
+			<li class="flex gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" /><span>希望有人根据新增经历持续调整路径，而不是一次性给建议的学生</span></li>
+		</ul>
+	</section>
+
+	<section class="mx-auto max-w-3xl px-6 py-8">
+		<h2 class="text-2xl font-semibold text-ink">服务形式</h2>
+		<div class="mt-6">
+			<Timeline steps={process} />
+		</div>
+		<p class="mt-6 text-sm text-ink-soft">
+			陪跑周期与频次根据学生的具体阶段个性化定制，联系我们后会先做一次背景诊断，再确认具体安排。
+		</p>
+	</section>
+
+	<CTA
+		heading="想了解陪跑的具体安排？"
+		body="预约一次背景诊断，我们会根据你的阶段给出个性化的陪跑方案。"
+		buttonLabel="预约咨询"
+		buttonHref="/contact"
+	/>
+</Layout>

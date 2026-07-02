@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CTA from '../components/CTA.astro';
+import { TUTORING_MAILTO } from '../consts';
+
+const title = '师资力量';
+const description = '课程辅导团队：芝加哥大学经济学 PhD 背景的主讲人，以及课程辅导讲师团队。';
+
+const instructors = [
+	{ name: '其他讲师 A', specialty: '计量经济学 / 数据分析课程辅导' },
+	{ name: '其他讲师 B', specialty: '宏观经济学 / 数理基础课程辅导' },
+];
+---
+
+<Layout title={title} description={description}>
+	<section class="mx-auto max-w-3xl px-6 pb-12 pt-20 md:pt-28">
+		<p class="text-sm font-medium uppercase tracking-wide text-accent">Faculty</p>
+		<h1 class="mt-4 text-4xl font-semibold leading-tight tracking-tight text-ink md:text-5xl">师资力量</h1>
+		<p class="mt-6 text-lg leading-relaxed text-ink-soft">
+			课程辅导团队由张博主讲，并配有覆盖不同课程方向的讲师团队。
+		</p>
+	</section>
+
+	<section class="mx-auto max-w-3xl px-6 py-8">
+		<div class="flex flex-col gap-6 rounded-2xl border border-line bg-paper p-8 sm:flex-row sm:items-start">
+			<div class="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-accent-soft text-2xl font-semibold text-accent">
+				张
+			</div>
+			<div>
+				<h2 class="text-xl font-semibold text-ink">张博</h2>
+				<p class="mt-1 text-sm font-medium uppercase tracking-wide text-accent">主讲人</p>
+				<p class="mt-3 text-sm leading-relaxed text-ink-soft">
+					芝加哥大学经济学 PhD 背景，具备跨学科训练。主讲 1v1课业辅导、录播课程与考前冲刺，擅长把高阶经济学理论（微观、宏观、计量）拆解成可以逐步消化的学习路径。
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="mx-auto max-w-3xl px-6 py-8 pb-16">
+		<h2 class="text-xl font-semibold text-ink">课程辅导讲师团队</h2>
+		<div class="mt-6 grid gap-5 sm:grid-cols-2">
+			{
+				instructors.map((instructor) => (
+					<div class="flex items-center gap-4 rounded-2xl border border-line bg-paper p-6">
+						<div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-paper-raised text-sm font-medium text-ink-soft">
+							照片
+						</div>
+						<div>
+							<p class="text-sm font-semibold text-ink">{instructor.name}</p>
+							<p class="mt-1 text-sm text-ink-soft">{instructor.specialty}</p>
+						</div>
+					</div>
+				))
+			}
+		</div>
+		<p class="mt-4 text-xs text-ink-soft">讲师照片与详细履历更新中。</p>
+	</section>
+
+	<CTA
+		heading="想预约张博或指定讲师的辅导？"
+		body="联系课程辅导小助手，告诉我们你的课程需求。"
+		buttonLabel="联系课程辅导小助手"
+		buttonHref={TUTORING_MAILTO}
+	/>
+</Layout>

@@ -1,41 +1,85 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { CONTACT_EMAIL, WECHAT_ACCOUNT } from '../consts';
+import { CONTACT_EMAIL, DIAGNOSTIC_MAILTO, TUTORING_MAILTO, WECHAT_ACCOUNT, ZHIHU_URL } from '../consts';
 
 const title = '联系我们';
-const description = '通过邮箱或微信公众号联系 Best Studio，开始一次背景诊断。';
+const description = '课程辅导与申请规划两条业务线的联系入口——请根据你的需求选择对应入口。';
 ---
 
 <Layout title={title} description={description}>
-	<section class="mx-auto max-w-3xl px-6 pb-20 pt-20 md:pt-28">
+	<section class="mx-auto max-w-3xl px-6 pb-12 pt-20 md:pt-28">
 		<p class="text-sm font-medium uppercase tracking-wide text-accent">Contact</p>
 		<h1 class="mt-4 text-4xl font-semibold leading-tight tracking-tight text-ink md:text-5xl">联系我们</h1>
 		<p class="mt-6 text-lg leading-relaxed text-ink-soft">
-			请通过以下任一方式联系我们。为了让第一次沟通更高效，建议简要说明你目前所处的阶段（例如：本科在读 /
-			准备申请 Predoc / 正在准备 PhD 申请）。
+			我们有两条独立运作的业务线，请根据你的需求选择对应的联系入口，方便我们更快为你安排合适的团队。
 		</p>
+	</section>
 
-		<div class="mt-12 grid gap-6 sm:grid-cols-2">
+	<section class="mx-auto max-w-3xl px-6 pb-16">
+		<div class="grid gap-6 sm:grid-cols-2">
 			<div class="rounded-2xl border border-line bg-paper p-7">
-				<h2 class="text-lg font-semibold text-ink">邮箱</h2>
-				<p class="mt-2 text-sm text-ink-soft">最适合详细描述你的背景和问题。</p>
-				<a href={`mailto:${CONTACT_EMAIL}`} class="mt-4 inline-block text-accent hover:underline">
-					{CONTACT_EMAIL}
+				<p class="text-xs font-medium uppercase tracking-wide text-accent">课程辅导</p>
+				<h2 class="mt-2 text-lg font-semibold text-ink">课程辅导小助手</h2>
+				<p class="mt-2 text-sm leading-relaxed text-ink-soft">
+					1v1课业辅导、录播课程、考前冲刺相关咨询，请联系课程辅导小助手。
+				</p>
+				<div class="mt-5 rounded-xl bg-paper-raised px-5 py-4">
+					<p class="text-sm font-medium text-ink">搜索公众号</p>
+					<p class="mt-1 text-base font-semibold text-accent">{WECHAT_ACCOUNT}</p>
+				</div>
+				<a
+					href={TUTORING_MAILTO}
+					class="mt-4 inline-block text-sm font-medium text-accent hover:underline"
+				>
+					或发送邮件（自动填好模板） &rarr;
 				</a>
 			</div>
 
-			<div class="rounded-2xl border border-line bg-paper p-7">
-				<h2 class="text-lg font-semibold text-ink">微信公众号</h2>
-				<p class="mt-2 text-sm text-ink-soft">关注公众号后可直接留言，我们会尽快回复。</p>
-				<p class="mt-4 font-medium text-ink">{WECHAT_ACCOUNT}</p>
+			<div class="rounded-2xl border border-accent/30 bg-accent-soft p-7">
+				<p class="text-xs font-medium uppercase tracking-wide text-accent">申请规划</p>
+				<h2 class="mt-2 text-lg font-semibold text-ink">申请咨询</h2>
+				<p class="mt-2 text-sm leading-relaxed text-ink-soft">
+					陪跑、咨询、Predoc / PhD 申请规划相关咨询，请联系申请咨询入口。
+				</p>
+				<div class="mt-5 rounded-xl bg-paper px-5 py-4">
+					<p class="text-sm font-medium text-ink">搜索公众号</p>
+					<p class="mt-1 text-base font-semibold text-accent">{WECHAT_ACCOUNT}</p>
+				</div>
+				<a
+					href={DIAGNOSTIC_MAILTO}
+					class="mt-4 inline-block text-sm font-medium text-accent hover:underline"
+				>
+					或发送邮件（自动填好模板） &rarr;
+				</a>
 			</div>
 		</div>
+		<p class="mt-4 text-xs text-ink-soft">
+			两条业务线目前共用同一个微信公众号，团队会根据你留言的内容分流到对应负责人。
+		</p>
+	</section>
 
-		<div class="mt-12 rounded-2xl bg-paper-raised p-7">
-			<h2 class="text-lg font-semibold text-ink">如果你想直接预约咨询</h2>
-			<p class="mt-2 text-sm leading-relaxed text-ink-soft">
-				可以直接前往 <a href="/book-a-call" class="text-accent hover:underline">Book a Call</a> 页面查看预约方式。
-			</p>
+	<section class="mx-auto max-w-3xl px-6 pb-16">
+		<div class="rounded-2xl border border-line bg-paper p-7">
+			<h2 class="text-lg font-semibold text-ink">邮箱</h2>
+			<p class="mt-2 text-sm text-ink-soft">如果你习惯用邮件，或者背景情况比较复杂想详细说明，可以直接发邮件。</p>
+			<a href={`mailto:${CONTACT_EMAIL}`} class="mt-4 inline-block text-accent hover:underline">
+				{CONTACT_EMAIL}
+			</a>
 		</div>
+	</section>
+
+	<section class="mx-auto max-w-3xl px-6 pb-20">
+		<a
+			href={ZHIHU_URL}
+			target="_blank"
+			rel="noopener noreferrer"
+			class="flex items-center justify-between gap-4 rounded-2xl border border-line bg-paper-raised p-6 transition-colors hover:border-accent"
+		>
+			<div>
+				<p class="text-xs font-medium uppercase tracking-wide text-accent">内容平台</p>
+				<p class="mt-1 text-sm text-ink">在咨询前想先了解我们的方法论？可以先看知乎。</p>
+			</div>
+			<span class="shrink-0 text-sm font-medium text-accent">前往知乎 &rarr;</span>
+		</a>
 	</section>
 </Layout>

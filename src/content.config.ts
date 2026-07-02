@@ -24,11 +24,25 @@ const caseStudies = defineCollection({
 		order: z.number(),
 		title: z.string(),
 		summary: z.string(),
+		track: z.enum(['predoc', 'phd', 'career']).default('predoc'),
 		background: z.string(),
 		problem: z.string(),
 		diagnosis: z.string(),
 		solution: z.string(),
 		result: z.string(),
+	}),
+});
+
+const offers = defineCollection({
+	loader: glob({ base: './src/content/offers', pattern: '**/*.md' }),
+	schema: z.object({
+		order: z.number(),
+		category: z.enum(['predoc', 'phd']),
+		schoolTier: z.string(),
+		backgroundTag: z.string(),
+		timeline: z.string(),
+		insight: z.string(),
+		caseStudySlug: z.string().optional(),
 	}),
 });
 
@@ -43,4 +57,4 @@ const faqs = defineCollection({
 	}),
 });
 
-export const collections = { services, 'case-studies': caseStudies, faqs };
+export const collections = { services, 'case-studies': caseStudies, offers, faqs };

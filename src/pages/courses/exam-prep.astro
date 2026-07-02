@@ -1,0 +1,69 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Timeline from '../../components/Timeline.astro';
+import CTA from '../../components/CTA.astro';
+import { TUTORING_MAILTO } from '../../consts';
+
+const title = '考前冲刺';
+const description = '面向经济学/数学/公共政策相关专业本硕博学生的考前冲刺：GRE/GMAT定量、qualifying exam、技术面试摸底。';
+
+const tracks = [
+	{
+		title: 'GRE / GMAT 定量冲刺',
+		description: '针对经济学/数学/公共政策相关专业申请者，短期内提升定量部分的正确率和作答速度。',
+	},
+	{
+		title: 'Qualifying Exam 冲刺',
+		description: '面向经济学博士生的资格考试复习，覆盖高微、高宏、高计的核心考点和高频证明题型。',
+	},
+	{
+		title: '技术面试摸底',
+		description: '针对 RA / Predoc / 数据类岗位的技术面试，做一次系统的能力摸底和针对性练习安排。',
+	},
+];
+
+const process = [
+	{ title: '能力摸底', description: '通过一次诊断性测验或访谈，定位当前薄弱环节。' },
+	{ title: '制定冲刺计划', description: '根据考试/面试时间倒排复习节奏，明确每周任务。' },
+	{ title: '高频考点强化', description: '集中训练高频题型和证明思路，减少低效刷题。' },
+	{ title: '模拟测验', description: '考前进行至少一次全真模拟，熟悉时间分配和答题状态。' },
+];
+---
+
+<Layout title={title} description={description}>
+	<section class="mx-auto max-w-3xl px-6 pb-12 pt-20 md:pt-28">
+		<p class="text-sm font-medium uppercase tracking-wide text-accent">Courses · 考前冲刺</p>
+		<h1 class="mt-4 text-4xl font-semibold leading-tight tracking-tight text-ink md:text-5xl">考前冲刺</h1>
+		<p class="mt-6 text-lg leading-relaxed text-ink-soft">
+			面向经济学、数学、公共政策相关专业的本硕博学生，短期内针对具体考试或面试做系统性冲刺。
+		</p>
+	</section>
+
+	<section class="mx-auto max-w-3xl px-6 py-8">
+		<h2 class="text-2xl font-semibold text-ink">三类冲刺方向</h2>
+		<div class="mt-6 space-y-4">
+			{
+				tracks.map((t) => (
+					<div class="rounded-xl border border-line bg-paper p-5">
+						<p class="text-sm font-semibold text-ink">{t.title}</p>
+						<p class="mt-1.5 text-sm leading-relaxed text-ink-soft">{t.description}</p>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="mx-auto max-w-3xl px-6 py-8">
+		<h2 class="text-2xl font-semibold text-ink">冲刺流程</h2>
+		<div class="mt-8">
+			<Timeline steps={process} />
+		</div>
+	</section>
+
+	<CTA
+		heading="离考试/面试还有多久？"
+		body="联系课程辅导小助手，告诉我们你的考试或面试时间，我们会评估合适的冲刺节奏。"
+		buttonLabel="联系课程辅导小助手"
+		buttonHref={TUTORING_MAILTO}
+	/>
+</Layout>
