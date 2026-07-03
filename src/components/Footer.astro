@@ -1,5 +1,5 @@
 ---
-import { CONTACT_EMAIL, FOOTER_LINKS, SITE_TAGLINE, SITE_TITLE, WECHAT_ACCOUNT, ZHIHU_URL, BILIBILI_URL } from '../consts';
+import { CONTACT_EMAIL, FOOTER_LINKS, SITE_TAGLINE, SITE_TITLE, WECHAT_ACCOUNT, BILIBILI_URL } from '../consts';
 
 const year = new Date().getFullYear();
 ---
@@ -34,11 +34,6 @@ const year = new Date().getFullYear();
 						<a href={`mailto:${CONTACT_EMAIL}`} class="hover:text-ink">{CONTACT_EMAIL}</a>
 					</li>
 					<li>微信公众号：{WECHAT_ACCOUNT}</li>
-					<li>
-						<a href={ZHIHU_URL} target="_blank" rel="noopener noreferrer" class="hover:text-ink">
-							知乎主页（张博-RA硕博申请）
-						</a>
-					</li>
 					<li>
 						<a href={BILIBILI_URL} target="_blank" rel="noopener noreferrer" class="hover:text-ink">
 							B 站主页（BestStudio留学辅导）

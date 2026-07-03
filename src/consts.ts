@@ -7,7 +7,18 @@ export const SITE_DESCRIPTION =
 export const SITE_URL = 'https://www.beststudio-edu.com';
 
 export const CONTACT_EMAIL = 'b.s.beststudio@gmail.com';
+
+// Two hard-separated contact channels per the identity-isolation policy: the public
+// 公众号 handles 课程辅导 (real-identity track); a distinct WeChat ID handles 申请咨询
+// (anonymous track). Never present these as interchangeable or "same account".
 export const WECHAT_ACCOUNT = 'Best Studio留学工作室';
+export const CONSULTING_WECHAT_ID = 'Best_Studio_Best';
+
+// 张博's real-name Zhihu account — tutoring content only. Do not surface this account,
+// or any content-platform link tied to it, on pages belonging to the anonymous
+// 申请咨询/Predoc track (about, index programs section, contact's consulting card,
+// programs/*). Cross-referencing it there is exactly the identity-firewall violation
+// this policy exists to prevent.
 export const ZHIHU_URL = 'https://www.zhihu.com/people/xfyismi';
 export const BILIBILI_URL = 'https://space.bilibili.com/802357';
 
@@ -58,6 +69,7 @@ export const NAV_SIMPLE_LINKS = [
 	{ href: '/cases', label: '案例' },
 	{ href: '/resources', label: '知识库' },
 	{ href: '/about', label: '关于我们' },
+	{ href: '/policy', label: '服务须知' },
 	{ href: '/contact', label: '联系我们' },
 ] as const;
 

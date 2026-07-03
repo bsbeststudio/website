@@ -7,7 +7,7 @@ import Timeline from '../components/Timeline.astro';
 import OfferCard from '../components/OfferCard.astro';
 import CTA from '../components/CTA.astro';
 import FaqAccordion from '../components/FaqAccordion.astro';
-import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL, TUTORING_MAILTO, ZHIHU_URL } from '../consts';
+import { SITE_DESCRIPTION, SITE_TITLE, SITE_URL, TUTORING_MAILTO } from '../consts';
 
 const tutoringItems = [
 	{
@@ -67,10 +67,10 @@ const homeFaqs = (await getCollection('faqs'))
 	.map((f) => ({ question: f.data.question, answer: f.data.answer }));
 
 const stats = [
-	{ value: '6', label: '业务线：课业辅导 + 学术生涯规划' },
-	{ value: '5', label: '门系统性录播课程' },
-	{ value: '全流程', label: '从背景诊断到 Offer 决策' },
-	{ value: '知乎', label: '同一账号持续输出方法论' },
+	{ value: '200+', label: '团队月课时量' },
+	{ value: '5+', label: '国家/地区高校学生分布（英美港新澳等）' },
+	{ value: '10+', label: '讲师背景院校（芝加哥大学、东京大学、香港大学、北大、清华等）' },
+	{ value: '全流程', label: '从课业辅导到学术生涯决策' },
 ];
 
 const processSteps = [
@@ -228,24 +228,6 @@ const professionalServiceSchema = {
 		<div class="mt-10">
 			<Timeline steps={processSteps} />
 		</div>
-	</section>
-
-	<section class="mx-auto max-w-6xl px-6 py-16">
-		<h2 class="text-2xl font-semibold text-ink md:text-3xl">内容精选</h2>
-		<a
-			href={ZHIHU_URL}
-			target="_blank"
-			rel="noopener noreferrer"
-			class="mt-6 flex flex-col gap-4 rounded-2xl border border-line bg-paper-raised p-8 transition-colors hover:border-accent sm:flex-row sm:items-center sm:justify-between"
-		>
-			<div>
-				<p class="text-sm font-medium uppercase tracking-wide text-accent">知乎专栏</p>
-				<p class="mt-2 max-w-xl text-base text-ink">
-					我们持续在知乎分享 Predoc / PhD 申请的长文分析——你在这里读到的方法论，和我们在知乎上写的是同一套逻辑、同一个声音。
-				</p>
-			</div>
-			<span class="shrink-0 text-sm font-medium text-accent">前往知乎主页 &rarr;</span>
-		</a>
 	</section>
 
 	<section class="mx-auto max-w-6xl px-6 py-16">

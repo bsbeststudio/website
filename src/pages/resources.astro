@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CTA from '../components/CTA.astro';
-import { ZHIHU_URL, BILIBILI_URL, WECHAT_ACCOUNT, CONTACT_EMAIL, DIAGNOSTIC_MAILTO } from '../consts';
+import { CONTACT_EMAIL, DIAGNOSTIC_MAILTO } from '../consts';
 
 const title = '知识库';
 const description =
@@ -38,8 +38,8 @@ const stages = [
 			},
 			{
 				title: '推荐信网络位置：国内机构推荐信为什么"打折"',
-				href: ZHIHU_URL || '/about',
-				type: ZHIHU_URL ? 'external' : 'internal',
+				href: '/about',
+				type: 'internal',
 				summary:
 					'推荐信权重不只取决于写信人的热情，还取决于其在北美学术圈的网络节点位置——信息验证成本的差异。',
 			},
@@ -113,7 +113,7 @@ const stages = [
 		<p class="text-sm font-medium uppercase tracking-wide text-accent">Resources</p>
 		<h1 class="mt-4 text-4xl font-semibold leading-tight tracking-tight text-ink md:text-5xl">知识库</h1>
 		<p class="mt-6 text-lg leading-relaxed text-ink-soft">
-			按阶段整理的规划资源，帮助你先厘清当前所处的位置，再决定下一步该做什么。站内资源与知乎长文使用同一套框架，可以交叉阅读。
+			按阶段整理的规划资源，帮助你先厘清当前所处的位置，再决定下一步该做什么。
 		</p>
 	</section>
 
@@ -134,48 +134,6 @@ const stages = [
 				</a>
 				<span class="text-sm text-ink-soft">或微信公众号发送「时间线」</span>
 			</div>
-		</div>
-	</section>
-
-	<!-- 知乎专栏 + B站入口 -->
-	<section class="mx-auto max-w-3xl px-6 pb-8">
-		<div class="grid gap-4 sm:grid-cols-2">
-			{
-				ZHIHU_URL && (
-					<a
-						href={ZHIHU_URL}
-						target="_blank"
-						rel="noopener noreferrer"
-						class="flex flex-col justify-between gap-3 rounded-2xl border border-line bg-paper-raised p-6 transition-colors hover:border-accent"
-					>
-						<div>
-							<p class="text-xs font-medium uppercase tracking-wide text-accent">知乎专栏 · 张博-RA硕博申请</p>
-							<p class="mt-1 text-sm leading-relaxed text-ink">
-								持续分享 Predoc / PhD 申请的长文分析——你在这里读到的框架，和知乎文章是同一套逻辑、同一个声音。
-							</p>
-						</div>
-						<span class="shrink-0 text-sm font-medium text-accent">前往知乎 &rarr;</span>
-					</a>
-				)
-			}
-			{
-				BILIBILI_URL && (
-					<a
-						href={BILIBILI_URL}
-						target="_blank"
-						rel="noopener noreferrer"
-						class="flex flex-col justify-between gap-3 rounded-2xl border border-line bg-paper-raised p-6 transition-colors hover:border-accent"
-					>
-						<div>
-							<p class="text-xs font-medium uppercase tracking-wide text-accent">B 站 · BestStudio留学辅导</p>
-							<p class="mt-1 text-sm leading-relaxed text-ink">
-								发布课业辅导与真实案例拆解视频——覆盖不同背景学生的具体决策过程，配合站内文字资源交叉参考。
-							</p>
-						</div>
-						<span class="shrink-0 text-sm font-medium text-accent">前往 B 站 &rarr;</span>
-					</a>
-				)
-			}
 		</div>
 	</section>
 

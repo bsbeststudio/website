@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CTA from '../components/CTA.astro';
+
+const title = '服务须知';
+const description = 'Best Studio 服务须知——学术诚信原则、辅导流程与隐私保护说明。';
+
+const items = [
+	'我们坚决抵制代写、代考等任何形式的学术不端行为，所有辅导均以帮助学生理解知识、提升能力为目的',
+	'课程开始前，学生需提供辅导相关材料，工作室将根据需求匹配合适讲师，并提供讲师过往授课demo供确认',
+	'课程需提前预付费用，如遇讲师原因导致的课程问题，可申请更换讲师、退款或赔付，具体规则咨询时说明',
+	'为保护师生双方隐私，请勿在课程中私下交换个人联系方式，如有沟通需求请通过工作室协调',
+	'参与辅导默认可能被用于制作脱敏后的宣传试听片段（去除双方个人信息），如不同意授权请提前告知',
+];
+---
+
+<Layout title={title} description={description}>
+	<section class="mx-auto max-w-3xl px-6 pb-12 pt-20 md:pt-28">
+		<p class="text-sm font-medium uppercase tracking-wide text-accent">Policy</p>
+		<h1 class="mt-4 text-4xl font-semibold leading-tight tracking-tight text-ink md:text-5xl">服务须知</h1>
+		<p class="mt-6 text-lg leading-relaxed text-ink-soft">
+			以下条款适用于 Best Studio 全部服务线，帮助你了解我们的辅导原则与隐私保护安排。
+		</p>
+	</section>
+
+	<section class="mx-auto max-w-3xl px-6 pb-16">
+		<ul class="space-y-4">
+			{
+				items.map((item) => (
+					<li class="flex gap-3 rounded-xl border border-line bg-paper p-5 text-sm leading-relaxed text-ink-soft">
+						<span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+						<span>{item}</span>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+
+	<CTA
+		heading="还有其他问题？"
+		body="联系我们，我们会根据你的具体需求说明详细规则。"
+		buttonLabel="联系我们"
+		buttonHref="/contact"
+	/>
+</Layout>
