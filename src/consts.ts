@@ -9,6 +9,7 @@ export const SITE_URL = 'https://www.beststudio-edu.com';
 export const CONTACT_EMAIL = 'b.s.beststudio@gmail.com';
 export const WECHAT_ACCOUNT = 'Best Studio留学工作室';
 export const ZHIHU_URL = 'https://www.zhihu.com/people/xfyismi';
+export const BILIBILI_URL = 'https://space.bilibili.com/802357';
 
 // TODO: paste a real Calendly scheduling link here once one exists.
 // When set, the Book a Call page will render an embedded Calendly widget

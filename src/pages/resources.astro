@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CTA from '../components/CTA.astro';
-import { ZHIHU_URL, WECHAT_ACCOUNT, CONTACT_EMAIL, DIAGNOSTIC_MAILTO } from '../consts';
+import { ZHIHU_URL, BILIBILI_URL, WECHAT_ACCOUNT, CONTACT_EMAIL, DIAGNOSTIC_MAILTO } from '../consts';
 
 const title = '知识库';
 const description =
@@ -137,27 +137,47 @@ const stages = [
 		</div>
 	</section>
 
-	<!-- 知乎专栏入口 -->
-	{
-		ZHIHU_URL && (
-			<section class="mx-auto max-w-3xl px-6 pb-8">
-				<a
-					href={ZHIHU_URL}
-					target="_blank"
-					rel="noopener noreferrer"
-					class="flex items-center justify-between gap-4 rounded-2xl border border-line bg-paper-raised p-6 transition-colors hover:border-accent"
-				>
-					<div>
-						<p class="text-xs font-medium uppercase tracking-wide text-accent">知乎专栏</p>
-						<p class="mt-1 text-base text-ink">
-							我们持续在知乎分享 Predoc / PhD 申请的长文分析——你在这里读到的框架，和知乎文章是同一套逻辑、同一个声音。
-						</p>
-					</div>
-					<span class="shrink-0 text-sm font-medium text-accent">前往知乎 &rarr;</span>
-				</a>
-			</section>
-		)
-	}
+	<!-- 知乎专栏 + B站入口 -->
+	<section class="mx-auto max-w-3xl px-6 pb-8">
+		<div class="grid gap-4 sm:grid-cols-2">
+			{
+				ZHIHU_URL && (
+					<a
+						href={ZHIHU_URL}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="flex flex-col justify-between gap-3 rounded-2xl border border-line bg-paper-raised p-6 transition-colors hover:border-accent"
+					>
+						<div>
+							<p class="text-xs font-medium uppercase tracking-wide text-accent">知乎专栏 · 张博-RA硕博申请</p>
+							<p class="mt-1 text-sm leading-relaxed text-ink">
+								持续分享 Predoc / PhD 申请的长文分析——你在这里读到的框架，和知乎文章是同一套逻辑、同一个声音。
+							</p>
+						</div>
+						<span class="shrink-0 text-sm font-medium text-accent">前往知乎 &rarr;</span>
+					</a>
+				)
+			}
+			{
+				BILIBILI_URL && (
+					<a
+						href={BILIBILI_URL}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="flex flex-col justify-between gap-3 rounded-2xl border border-line bg-paper-raised p-6 transition-colors hover:border-accent"
+					>
+						<div>
+							<p class="text-xs font-medium uppercase tracking-wide text-accent">B 站 · BestStudio留学辅导</p>
+							<p class="mt-1 text-sm leading-relaxed text-ink">
+								发布课业辅导与真实案例拆解视频——覆盖不同背景学生的具体决策过程，配合站内文字资源交叉参考。
+							</p>
+						</div>
+						<span class="shrink-0 text-sm font-medium text-accent">前往 B 站 &rarr;</span>
+					</a>
+				)
+			}
+		</div>
+	</section>
 
 	<!-- 按阶段整理的资源列表 -->
 	<section class="mx-auto max-w-3xl px-6 pb-16 space-y-12">
