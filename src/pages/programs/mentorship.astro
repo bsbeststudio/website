@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Timeline from '../../components/Timeline.astro';
 import CTA from '../../components/CTA.astro';
+import { PREDOC_SITE_URL } from '../../consts';
 
 const title = '陪跑';
 const description = '跨阶段长期陪伴的学术生涯规划服务，适合起步早、需要持续节点把控的学生。';
@@ -40,6 +41,23 @@ const process = [
 		<p class="mt-6 text-sm text-ink-soft">
 			陪跑周期与频次根据学生的具体阶段个性化定制，联系我们后会先做一次背景诊断，再确认具体安排。
 		</p>
+	</section>
+
+	<section class="mx-auto max-w-3xl px-6 py-10">
+		<a
+			href={PREDOC_SITE_URL}
+			target="_blank"
+			rel="noopener noreferrer"
+			class="flex items-center justify-between gap-6 rounded-2xl border border-line bg-paper-raised p-7 transition-colors hover:border-accent"
+		>
+			<div>
+				<p class="text-sm font-medium uppercase tracking-wide text-accent">科研助理求职 / RA / Predoc / PhD 申请</p>
+				<p class="mt-2 text-base text-ink">
+					如果你的陪跑需求集中在科研助理（RA）求职、Predoc 或 PhD 申请路径规划，可以先去我们的申请规划专区找到对应阶段的 Hub，再决定要不要接入陪跑。
+				</p>
+			</div>
+			<span class="shrink-0 text-sm font-medium text-accent">进入申请规划专区 &rarr;</span>
+		</a>
 	</section>
 
 	<CTA

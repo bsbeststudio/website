@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import CTA from '../../components/CTA.astro';
+import { PREDOC_SITE_URL } from '../../consts';
 
 const title = 'Predoc / PhD 申请规划';
 const description = '硕博 Predoc/PhD 申请规划服务概览——完整内容见服务详情页。';
@@ -50,6 +51,23 @@ const highlights = [
 				查看完整申请规划服务 &rarr;
 			</a>
 		</div>
+	</section>
+
+	<section class="mx-auto max-w-3xl px-6 py-10">
+		<a
+			href={PREDOC_SITE_URL}
+			target="_blank"
+			rel="noopener noreferrer"
+			class="flex items-center justify-between gap-6 rounded-2xl border border-line bg-paper-raised p-7 transition-colors hover:border-accent"
+		>
+			<div>
+				<p class="text-sm font-medium uppercase tracking-wide text-accent">更完整的中文知识库</p>
+				<p class="mt-2 text-base text-ink">
+					科研职业判断、RA/科研经历积累、Predoc vs PhD 比较、选校与文书——按阶段整理的完整 Hub，见我们的申请规划知识站。
+				</p>
+			</div>
+			<span class="shrink-0 text-sm font-medium text-accent">前往 Best Studio 申请规划站 &rarr;</span>
+		</a>
 	</section>
 
 	<CTA

@@ -11,6 +11,11 @@ export const WECHAT_ACCOUNT = 'Best Studio留学工作室';
 export const ZHIHU_URL = 'https://www.zhihu.com/people/xfyismi';
 export const BILIBILI_URL = 'https://space.bilibili.com/802357';
 
+// Full RA/科研助理求职、Predoc、PhD 申请规划 knowledge hub lives on the standalone
+// predoc/PhD business site. Programs pages should link out to it rather than
+// duplicating its depth here.
+export const PREDOC_SITE_URL = 'https://best-studio-6yx.pages.dev/start-here/';
+
 // TODO: paste a real Calendly scheduling link here once one exists.
 // When set, the Book a Call page will render an embedded Calendly widget
 // instead of the WeChat-only instructions.

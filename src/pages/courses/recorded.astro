@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import CTA from '../../components/CTA.astro';
-import { TUTORING_MAILTO } from '../../consts';
+import { TUTORING_MAILTO, BILIBILI_URL } from '../../consts';
 
 const title = '录播课程';
 const description = '五门系统性录播课程，覆盖高级微观、高级计量、高级宏观、递归宏观理论与中级计量经济学。';
@@ -11,30 +11,35 @@ const courses = [
 		name: '草履虫也能学会的高级微观经济学',
 		basedOn: '教材：Mas-Colell, Whinston & Green（MWG）',
 		feature: '从零拆解 MWG 的证明逻辑和考试重点，适合博士资格考前系统复习。',
+		coverage: '已更新至消费者理论、总需求加总、生产者理论、不确定性下的选择、博弈论基础与动态博弈、竞争市场均衡（第 3–10 章）。',
 		audience: '经济学硕博 / 准备 qualifying exam 的学生',
 	},
 	{
 		name: '草履虫也能学会的高级计量经济学',
 		basedOn: '教材：Hansen《Econometrics》',
 		feature: '按 Hansen 教材的章节顺序讲解，配合习题演练巩固证明思路。',
+		coverage: '已更新至 GMM 与矩条件模型、时间序列基础、多元时间序列（VAR）、非平稳时间序列、面板数据（第 13–17 章）。',
 		audience: '经济学硕博 / 需要系统补计量基础的学生',
 	},
 	{
 		name: '草履虫也能学会的高级宏观经济学',
 		basedOn: '教材：Romer《Advanced Macroeconomics》',
 		feature: '梳理 Romer 教材的模型脉络，讲清楚每个假设背后的经济学直觉。',
+		coverage: 'B 站同名系列已更新 Solow 模型、Ramsey-Cass-Koopmans（RCK）、R&D 增长模型等章节。',
 		audience: '经济学硕博 / 准备 qualifying exam 的学生',
 	},
 	{
 		name: '草履虫也能学会的递归宏观经济理论',
 		basedOn: '教材：Ljungqvist & Sargent《Recursive Macroeconomic Theory》',
-		feature: '专门拆解动态规划与递归方法在宏观模型中的应用，逐步搭建求解框架。',
+		feature: '专门拆解动态规划与递归方法在宏观模型中的应用，逐步搭建求解框架，配套习题与解答。',
+		coverage: null,
 		audience: '经济学博士生 / 研究方向涉及动态优化的学生',
 	},
 	{
 		name: '草履虫也能学会的中级计量经济学',
 		basedOn: '教材：Wooldridge《Introductory Econometrics》',
 		feature: '面向本科到硕士过渡阶段，打好回归分析与因果推断的基础。',
+		coverage: null,
 		audience: '经济学本科高年级 / 硕士在读学生',
 	},
 ];
@@ -45,7 +50,7 @@ const courses = [
 		<p class="text-sm font-medium uppercase tracking-wide text-accent">Courses · 录播课程</p>
 		<h1 class="mt-4 text-4xl font-semibold leading-tight tracking-tight text-ink md:text-5xl">录播课程</h1>
 		<p class="mt-6 text-lg leading-relaxed text-ink-soft">
-			五门系统性录播课程，按经典教材的章节脉络讲解，适合自主安排学习节奏的学生。
+			五门系统性录播课程，按经典教材的章节脉络讲解，适合自主安排学习节奏的学生。完整视频可在 B 站免费试看，正式购课后解锁配套习题与答疑。
 		</p>
 	</section>
 
@@ -57,6 +62,7 @@ const courses = [
 						<h2 class="text-lg font-semibold text-ink">{course.name}</h2>
 						<p class="mt-1 text-sm text-ink-soft">{course.basedOn}</p>
 						<p class="mt-3 text-sm leading-relaxed text-ink-soft">{course.feature}</p>
+						{course.coverage && <p class="mt-3 text-sm leading-relaxed text-ink-soft">{course.coverage}</p>}
 						<p class="mt-3 text-xs font-medium uppercase tracking-wide text-accent">适用范围：{course.audience}</p>
 						<a
 							href={TUTORING_MAILTO}
@@ -69,6 +75,27 @@ const courses = [
 			}
 		</div>
 	</section>
+
+	{
+		BILIBILI_URL && (
+			<section class="mx-auto max-w-4xl px-6 pb-20">
+				<a
+					href={BILIBILI_URL}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="flex items-center justify-between gap-6 rounded-2xl border border-line bg-paper-raised p-7 transition-colors hover:border-accent"
+				>
+					<div>
+						<p class="text-sm font-medium uppercase tracking-wide text-accent">B 站 · BestStudio留学辅导</p>
+						<p class="mt-2 text-base text-ink">
+							以上五门课程的完整录播、更新进度与讲师阵容，都可以在工作室 B 站官方账号直接试看。
+						</p>
+					</div>
+					<span class="shrink-0 text-sm font-medium text-accent">前往 B 站 &rarr;</span>
+				</a>
+			</section>
+		)
+	}
 
 	<CTA
 		heading="想先试听一节课？"
